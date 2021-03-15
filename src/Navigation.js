@@ -1,5 +1,5 @@
 import * as React from "react";
-import './css/navigation.css';
+import './css/Navigation.css';
 import logo from './resources/logos/COMPUTPIXELS.png';
 
 
