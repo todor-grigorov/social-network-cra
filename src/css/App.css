@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 } */
+
+.section {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.public-headline {
+  font-size: 3.4rem;
+  font-family: sans-serif;
+  color: #2977c9;
+  font-weight: 200;
+  line-height: 70px;
+  /* width: 55%; */
+  padding-bottom: 48px;
+}
+
+.public-main-img {
+  z-index: -1;
+  width: 80%;
+  height: 60%;
+}

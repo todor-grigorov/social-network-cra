@@ -1,6 +1,6 @@
 import * as React from "react";
-import './css/Navigation.css';
-import logo from './resources/logos/COMPUTPIXELS.png';
+import '../css/Navigation.css';
+import logo from '../resources/logos/COMPUTPIXELS.png';
 
 
 const Navigation = (props) => {
