@@ -7,12 +7,12 @@ const HomePage = (props) => {
 
 
     return (
-        <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <section className="section">
                 <h1 className="public-headline">Welcome to your programming community</h1>
                 <img className="public-main-img" src={mainImage} alt="main-pic" />
             </section>
-        </main>
+        </div>
     );
 }
 
