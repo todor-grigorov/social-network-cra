@@ -2,6 +2,8 @@
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import SignIn from './components/user/SignIn';
+import Register from './components/user/Register';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +20,9 @@ function App() {
         <Switch>
           <Route path="/signin">
             <SignIn />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/" >
             <HomePage />

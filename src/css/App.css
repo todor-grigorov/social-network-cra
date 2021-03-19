@@ -71,7 +71,7 @@ body {height: 100vh;}
   height: 60%;
 }
 
-/*==================================Sign In==========================================*/
+/*================================== Sign In ==========================================*/
 .signin-page {
   width: 100%;
   height: 90%;
@@ -203,4 +203,71 @@ body {height: 100vh;}
 .join-now-btn:hover {
   background: #d0e8ff !important;
   text-decoration: underline;
+}
+
+
+/*================================== Register ==========================================*/
+
+.register-page {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+
+.register-container {
+  /* min-width: 20%; */
+  min-height: 50vh;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+#register-form {
+  width: 100%;
+  height: 90%;
+  /* padding-top: 5%; */
+  /* padding-bottom: 5%; */
+  text-align: center;
+  color: #234465;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register-form button {
+  margin-top: 5%;
+  width: 90%;
+  background-color: #0073b1;
+  border: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-family: sans-serif;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  outline-width: 2px;
+  padding: 0 24px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  z-index: 0;
+  background: #0a66c2 !important;
+  border-radius: 28px !important;
+}
+
+#register-form button:hover {
+  background: #004182 !important;
 }
