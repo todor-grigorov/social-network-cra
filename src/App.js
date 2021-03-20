@@ -16,6 +16,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* TODO: */}
+        {/* Change some styles */}
         <Navigation />
         <Switch>
           <Route path="/signin">
@@ -27,6 +29,12 @@ function App() {
           <Route path="/" >
             <HomePage />
           </Route>
+
+          {/* TODO: */}
+          {/* App Body for registered users */}
+          {/*     Sidebar */}
+          {/*     Feed */}
+          {/*     Widgets */}
         </Switch>
       </div>
     </Router>
