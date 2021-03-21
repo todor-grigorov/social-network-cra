@@ -11,13 +11,18 @@ import {
   Link
 } from "react-router-dom";
 
+// rafce
+// rfce
+// Photo by <a href="https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">AltumCode</a> on <a href="/s/photos/programming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         {/* TODO: */}
-        {/* Change some styles */}
+        {/* Render public or private Nav according to user credentials */}
         <Navigation />
         <Switch>
           <Route path="/signin">
@@ -42,3 +47,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,16 +1,26 @@
 
 .nav {
-    max-width: 1128px;
+    /* this keeps the navigation bar sticky */
+    position: sticky;
+    top:0; 
+    z-index: 999;
+    /* ==================================== */
+    /* max-width: 1128px; */
+    width: 100%;
     margin: auto;
-    min-height: 10%;
-    max-height: 10%;
-    /* padding: 12px 0 16px; */
+    /* min-height: 10%;
+    max-height: 10%; */
+    padding: 10px 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: relative;
     flex-wrap: nowrap;
+    border-bottom: 0.1px solid lightgrey;
+
 }
+
+/* ============================================== Public Navigation ===================================================== */
 
 .nav-btn-only-text {
     background-color: rgba(0,0,0,0);
@@ -73,4 +83,37 @@
     background-color: rgba(112,181,249,0.15);
     color: #0a66c2;
     box-shadow: inset 0 0 0 2px #0073b1, inset 0 0 0 2px rgb(0 0 0 / 0%), inset 0 0 0 1px rgb(0 0 0 / 0%);
+}
+
+
+/* ============================================== Private Navigation ===================================================== */
+
+.nav__left {
+    display: flex;
+}
+
+.nav__search {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    height: 22px;
+    color: gray;
+    background-color: #eef3f8;
+}
+
+.nav__search > input {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.nav__left > img {
+    object-fit: contain;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav__right {
+    display: flex;
 }
