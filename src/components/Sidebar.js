@@ -4,6 +4,14 @@ import '../css/Sidebar.css';
 import background from '../resources/images/test_background.jpeg';
 
 const Sidebar = () => {
+
+    const recentItem = (topic) => (
+        <div className="sidebar__recentItem">
+            <span className="sidebar__hash">#</span>
+            <p>{topic}</p>
+        </div>
+    )
+
     return (
         <div className="sidebar">
             <div className="sidebar__top">
@@ -25,6 +33,11 @@ const Sidebar = () => {
 
             <div className="sidebar__bottom">
                 <p>Recent</p>
+                {recentItem('reactjs')}
+                {recentItem('devOps')}
+                {recentItem('javascript')}
+                {recentItem('developper')}
+                {recentItem('programming')}
             </div>
         </div>
     )

@@ -40,9 +40,8 @@ function App() {
               /* App Body for registered users */
               <div className="app__body">
                 <Sidebar />
+                <Feed />
               </div>
-              /*     Sidebar */
-              /*     Feed */
               /*     Widgets */
               :
               <HomePage />
