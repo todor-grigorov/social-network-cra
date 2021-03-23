@@ -1,5 +1,7 @@
+import React from 'react';
+import { useState } from 'react';
 // import logo from './logo.svg';
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
 import SignIn from './components/user/SignIn';
 import Register from './components/user/Register';
@@ -10,17 +12,18 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Sidebar from './components/Sidebar';
 
 // rafce
 // rfce
 // Photo by <a href="https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">AltumCode</a> on <a href="/s/photos/programming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 
-
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <Router>
-      <div className="App">
+      <div className={isAuthenticated ? "app-authenticated" : "app"}>
         {/* TODO: */}
         {/* Render public or private Nav according to user credentials */}
         <Navigation />
@@ -32,14 +35,21 @@ function App() {
             <Register />
           </Route>
           <Route path="/" >
-            <HomePage />
+            {isAuthenticated ?
+              /* TODO: */
+              /* App Body for registered users */
+              <div className="app__body">
+                <Sidebar />
+              </div>
+              /*     Sidebar */
+              /*     Feed */
+              /*     Widgets */
+              :
+              <HomePage />
+            }
           </Route>
 
-          {/* TODO: */}
-          {/* App Body for registered users */}
-          {/*     Sidebar */}
-          {/*     Feed */}
-          {/*     Widgets */}
+
         </Switch>
       </div>
     </Router>

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
-import '../css/Navigation.css';
+import '../../css/Navigation.css';
 // import logo from '../resources/logos/COMPUTPIXELS.png';
-import logo from '../resources/logos/a-lab.png';
-import avatarPic from '../resources/logos/ninja-avatar.png'
+import logo from '../../resources/logos/a-lab.png';
+import avatarPic from '../../resources/logos/ninja-avatar.png'
 import NavigationOption from "./NavigationOption";
 import HomeIcon from '@material-ui/icons/Home'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';

@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core';
 import React from 'react';
-import '../css/NavigationOption.css'
+import '../../css/NavigationOption.css'
 
 const NavigationOption = ({ avatar, Icon, title }) => {
     return (
