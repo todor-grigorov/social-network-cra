@@ -33,7 +33,7 @@ const Navigation = (props) => {
                 <img src={logo} alt="logo" style={{ maxWidth: "7em" }} />
                 <div className="nav__search">
                     <SearchIcon />
-                    <input type="text" />
+                    <input type="text" placeholder="Search" />
                 </div>
             </div>
             <div className="nav__right">
