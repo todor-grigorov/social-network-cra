@@ -1,7 +1,12 @@
 import * as React from "react";
+import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
+import { auth } from '../../firebase/firebase';
 import '../../css/App.css';
+import { useDispatch } from "react-redux";
+import userActions from "../../redux/actions/userActions";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +21,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Register = (props) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
+
+    const dispatch = useDispatch();
     const classes = useStyles();
+    let history = useHistory();
+
+
+    const onRegister = (e) => {
+        e.preventDefault();
+
+        if (!email) return;
+        if (!password) return;
+        if (!rePassword) return;
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(userAuth => {
+                dispatch({ type: userActions.login, payload: userAuth.user });
+                setEmail("");
+                setPassword("");
+                setRePassword("");
+                history.push("/signin");
+            });
+    };
 
     return (
         <Grid container className="register-page">
@@ -27,16 +56,16 @@ const Register = (props) => {
                             <form id="register-form" method="POST">
                                 <Grid container spacing={2} justify="center" alignItems="flex-end" style={{ height: "100%", paddingTop: "5%" }}>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth label="Username" name="username" />
+                                        <TextField variant="outlined" fullWidth label="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </Grid>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth type="password" label="Password" name="password" />
+                                        <TextField variant="outlined" fullWidth type="password" label="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                     </Grid>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth type="password" label="Repeat Password" name="rePassword" />
+                                        <TextField variant="outlined" fullWidth type="password" label="Repeat Password" name="rePassword" value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
                                     </Grid>
                                     <Grid item xs={12} style={{ alignSelf: 'center' }}>
-                                        <button type="submit">Register</button>
+                                        <button type="submit" onClick={onRegister}>Register</button>
                                     </Grid>
                                 </Grid>
 

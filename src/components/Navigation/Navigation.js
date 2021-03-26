@@ -20,16 +20,16 @@ const Navigation = (props) => {
     return (
         <div className="nav">
             {/* Public Navigation */}
-            {/* <Link to="/">
+            <Link to="/">
                 <img src={logo} alt="logo" style={{ maxWidth: "7em" }} />
             </Link>
             <div className="">
                 <Link className="nav-btn-only-text" to="/register">Join now</Link>
                 <Link className="nav-btn-outlined" to="/signin">Sign in</Link>
-            </div> */}
+            </div>
 
             {/* Private Navigation */}
-            <div className="nav__left">
+            {/* <div className="nav__left">
                 <img src={logo} alt="logo" style={{ maxWidth: "7em" }} />
                 <div className="nav__search">
                     <SearchIcon />
@@ -43,7 +43,7 @@ const Navigation = (props) => {
                 <NavigationOption Icon={ChatIcon} title="Messages" />
                 <NavigationOption Icon={NotificationsIcon} title="Notifications" />
                 <NavigationOption avatar={avatarPic} title="My profile" />
-            </div>
+            </div> */}
         </div>
     );
 }

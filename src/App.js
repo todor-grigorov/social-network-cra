@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
 import SignIn from './components/user/SignIn';
 import Register from './components/user/Register';
+import { useSelector } from "react-redux";
 
 import {
   BrowserRouter as Router,
@@ -21,10 +22,11 @@ import Feed from './components/Feed';
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const user = useSelector((state => state.user));
   return (
     <Router>
-      <div className={isAuthenticated ? "app-authenticated" : "app"}>
+      <div className={user.email ? "app-authenticated" : "app"}>
         {/* TODO: */}
         {/* Render public or private Nav according to user credentials */}
         <Navigation />
@@ -36,7 +38,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/" >
-            {isAuthenticated ?
+            {user.email ?
               /* TODO: */
               /* App Body for registered users */
               <div className="app__body">
