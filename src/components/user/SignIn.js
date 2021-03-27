@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { auth } from '../../firebase/firebase';
@@ -29,6 +29,24 @@ const SignIn = (props) => {
     let history = useHistory();
     const classes = useStyles();
 
+    // useEffect(() => {
+    //     auth.onAuthStateChanged(userAuth => {
+    //         if (userAuth) {
+    //             dispatch({
+    //                 type: userActions.login,
+    //                 payload: {
+    //                     displayName: userAuth.displayName,
+    //                     email: userAuth.email,
+    //                     uid: userAuth.uid,
+    //                     photoURL: userAuth.photoURL
+    //                 }
+    //             });
+    //         } else {
+    //             dispatch({ type: userActions.logOut });
+    //         }
+    //     });
+    // }, [user]);
+
     const onSignIn = (e) => {
         e.preventDefault();
 
@@ -37,10 +55,18 @@ const SignIn = (props) => {
 
         auth.signInWithEmailAndPassword(email, password)
             .then(userAuth => {
-                dispatch({ type: userActions.login, payload: userAuth.user });
+                dispatch({
+                    type: userActions.login,
+                    payload: {
+                        displayName: userAuth.user.displayName,
+                        email: userAuth.user.email,
+                        uid: userAuth.user.uid,
+                        photoURL: userAuth.user.photoURL
+                    }
+                });
                 setEmail("");
                 setPassword("");
-                history.push("/");
+                history.push("/feed");
             })
             .catch(err => {
                 // TODO:

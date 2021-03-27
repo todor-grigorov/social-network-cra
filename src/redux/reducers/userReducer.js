@@ -4,6 +4,7 @@ const initState = {
     displayName: '',
     email: '',
     uid: '',
+    photoURL: '',
 }
 
 function userReducer(state = initState, action) {
