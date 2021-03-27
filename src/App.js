@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Switch,
   Route,
-  Link,
   useHistory
 } from "react-router-dom";
 import Sidebar from './components/Sidebar';

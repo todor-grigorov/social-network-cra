@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { auth } from '../../firebase/firebase';
@@ -28,24 +28,6 @@ const SignIn = (props) => {
     const dispatch = useDispatch();
     let history = useHistory();
     const classes = useStyles();
-
-    // useEffect(() => {
-    //     auth.onAuthStateChanged(userAuth => {
-    //         if (userAuth) {
-    //             dispatch({
-    //                 type: userActions.login,
-    //                 payload: {
-    //                     displayName: userAuth.displayName,
-    //                     email: userAuth.email,
-    //                     uid: userAuth.uid,
-    //                     photoURL: userAuth.photoURL
-    //                 }
-    //             });
-    //         } else {
-    //             dispatch({ type: userActions.logOut });
-    //         }
-    //     });
-    // }, [user]);
 
     const onSignIn = (e) => {
         e.preventDefault();

@@ -2,9 +2,9 @@ import { Avatar } from '@material-ui/core';
 import React from 'react';
 import '../../css/NavigationOption.css'
 
-const NavigationOption = ({ avatar, Icon, title }) => {
+const NavigationOption = ({ avatar, Icon, title, clickHandler }) => {
     return (
-        <div className='navOption'>
+        <div className='navOption' onClick={clickHandler}>
             {Icon && <Icon className='navOption__icon' />}
             {avatar && (
                 <Avatar className='navOption__icon' src={avatar} />

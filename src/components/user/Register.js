@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import { auth } from '../../firebase/firebase';
 import '../../css/App.css';
-import userActions from "../../redux/actions/userActions";
 
 
 const useStyles = makeStyles((theme) => ({

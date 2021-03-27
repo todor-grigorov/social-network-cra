@@ -8,11 +8,12 @@ const initState = {
 }
 
 function userReducer(state = initState, action) {
+    const payload = action.payload;
     switch (action.type) {
         case userActions.login:
-            return { ...state, ...action.payload }
+            return { ...state, ...payload }
         case userActions.logOut:
-            return { ...state, user: null }
+            return { ...state, ...initState }
         default:
             return state;
     }

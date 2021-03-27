@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
 import '../../css/Navigation.css';
 // import logo from '../resources/logos/COMPUTPIXELS.png';
@@ -12,11 +12,56 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from "react-redux";
+import { Menu, MenuItem } from "@material-ui/core";
+import { auth } from '../../firebase/firebase';
+import { useDispatch } from "react-redux";
+import userActions from '../../redux/actions/userActions';
+// import { makeStyles } from "@material-ui/core/styles";
 
 
+// const useStyles = makeStyles((theme) => ({
+//     popOver: {
+
+//     }
+// }));
 
 const Navigation = (props) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const user = useSelector((state => state.user));
+    const dispatch = useDispatch();
+    let history = useHistory();
+    // const classes = useStyles();
+
+    const handleCloseProfilePropsList = () => {
+        setAnchorEl(null);
+        logout();
+    };
+
+    const renderProfilePropsList = () => (
+        <Menu
+            id="user-profile-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleCloseProfilePropsList}
+        >
+            <MenuItem onClick={handleCloseProfilePropsList}>Profile</MenuItem>
+            {/* <MenuItem onClick={handleCloseProfilePropsList}>My account</MenuItem> */}
+            <MenuItem onClick={handleCloseProfilePropsList} >Logout</MenuItem>
+        </Menu>
+    );
+
+    const handleProfileBtnClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const logout = () => {
+        auth.signOut()
+            .then(() => {
+                // dispatch({ type: userActions.logOut });
+                history.push("/");
+            });
+    };
 
     return (
         <div className="nav">
@@ -36,7 +81,8 @@ const Navigation = (props) => {
                         <NavigationOption Icon={BusinessCenterIcon} title="Jobs" />
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />
-                        <NavigationOption avatar={avatarPic} title="My profile" />
+                        <NavigationOption avatar={avatarPic} title="My profile" clickHandler={handleProfileBtnClick} />
+                        {renderProfilePropsList()}
                     </div>
                 </>
                 :
