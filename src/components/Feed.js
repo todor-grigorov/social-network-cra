@@ -34,7 +34,7 @@ function Feed() {
         e.preventDefault();
         db.collection("post").add({
             name: user.displayName,
-            description: 'just a test',
+            description: user.email,
             message: input,
             photoUrl: user.photoURL,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()

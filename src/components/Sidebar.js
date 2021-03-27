@@ -18,7 +18,7 @@ const Sidebar = () => {
         <div className="sidebar">
             <div className="sidebar__top">
                 <img src={background} alt="" />
-                <Avatar className="sidebar__avatar" alt="user photo" src={user.photoURL} />
+                <Avatar className="sidebar__avatar" alt="user photo" src={user.photoURL || ''} >{user.email[0].toUpperCase()}</Avatar>
                 <h2>{user.displayName || "New user"}</h2>
                 <h4>{user.email || "Add yor email"}</h4>
             </div>

@@ -15,7 +15,6 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    position: relative;
     flex-wrap: nowrap;
     border-bottom: 0.1px solid lightgrey;
 

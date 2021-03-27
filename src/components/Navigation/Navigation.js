@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import '../../css/Navigation.css';
 // import logo from '../resources/logos/COMPUTPIXELS.png';
 import logo from '../../resources/logos/a-lab.png';
-import avatarPic from '../../resources/logos/ninja-avatar.png'
+// import avatarPic from '../../resources/logos/ninja-avatar.png'
 import NavigationOption from "./NavigationOption";
 import HomeIcon from '@material-ui/icons/Home'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
@@ -14,8 +14,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from "react-redux";
 import { Menu, MenuItem } from "@material-ui/core";
 import { auth } from '../../firebase/firebase';
-import { useDispatch } from "react-redux";
-import userActions from '../../redux/actions/userActions';
 // import { makeStyles } from "@material-ui/core/styles";
 
 
@@ -28,7 +26,6 @@ import userActions from '../../redux/actions/userActions';
 const Navigation = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const user = useSelector((state => state.user));
-    const dispatch = useDispatch();
     let history = useHistory();
     // const classes = useStyles();
 
@@ -81,7 +78,7 @@ const Navigation = (props) => {
                         <NavigationOption Icon={BusinessCenterIcon} title="Jobs" />
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />
-                        <NavigationOption avatar={avatarPic} title="My profile" clickHandler={handleProfileBtnClick} />
+                        <NavigationOption avatar={true} title="My profile" clickHandler={handleProfileBtnClick} />
                         {renderProfilePropsList()}
                     </div>
                 </>
