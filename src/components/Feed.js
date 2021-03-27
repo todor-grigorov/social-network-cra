@@ -10,11 +10,14 @@ import InputOption from './InputOption';
 import Post from './Post';
 import { db } from '../firebase/firebase';
 import firebase from 'firebase';
+import { useSelector } from "react-redux";
 
 function Feed() {
 
     const [posts, setPosts,] = useState([]);
     const [input, setInput] = useState("");
+
+    const user = useSelector((state => state.user));
 
     useEffect(() => {
         db.collection("post").orderBy("timestamp", "desc").onSnapshot(snapshot => {

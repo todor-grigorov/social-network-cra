@@ -1,11 +1,9 @@
 import * as React from "react";
 import { useState } from 'react';
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import { auth } from '../../firebase/firebase';
 import '../../css/App.css';
-import { useDispatch } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 
 
@@ -21,11 +19,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Register = (props) => {
+    const [fullName, setFullName] = useState("");
+    const [photoUrl, setPhotoUrl] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
 
-    const dispatch = useDispatch();
+
     const classes = useStyles();
     let history = useHistory();
 
@@ -33,28 +33,42 @@ const Register = (props) => {
     const onRegister = (e) => {
         e.preventDefault();
 
+        if (!fullName) return;
+        if (!photoUrl) return;
         if (!email) return;
         if (!password) return;
         if (!rePassword) return;
 
         auth.createUserWithEmailAndPassword(email, password)
             .then(userAuth => {
-                dispatch({ type: userActions.login, payload: userAuth.user });
-                setEmail("");
-                setPassword("");
-                setRePassword("");
-                history.push("/signin");
+                userAuth.user.updateProfile({
+                    displayName: fullName,
+                    photoURL: photoUrl,
+                }).then(() => {
+                    setFullName("");
+                    setPhotoUrl("");
+                    setEmail("");
+                    setPassword("");
+                    setRePassword("");
+                    history.push("/signin");
+                });
             });
     };
 
     return (
-        <Grid container className="register-page">
-            <Grid item xs={3} className="register-container">
+        <Grid container className="register">
+            <Grid item xs={3} className="register__container">
                 <Paper container className={classes.paper}>
                     <Grid container justify="center" className={classes.gridForm}>
                         <Grid item xs={12}>
-                            <form id="register-form" method="POST">
+                            <form id="register__form" method="POST">
                                 <Grid container spacing={2} justify="center" alignItems="flex-end" style={{ height: "100%", paddingTop: "5%" }}>
+                                    <Grid item xs={10}>
+                                        <TextField variant="outlined" fullWidth label="Full name" name="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                    </Grid>
+                                    <Grid item xs={10}>
+                                        <TextField variant="outlined" fullWidth label="Photo URL" name="photoUrl" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+                                    </Grid>
                                     <Grid item xs={10}>
                                         <TextField variant="outlined" fullWidth label="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </Grid>

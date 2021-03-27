@@ -1,7 +1,11 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { auth } from '../../firebase/firebase';
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import '../../css/App.css';
+import userActions from "../../redux/actions/userActions";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +22,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+    let history = useHistory();
     const classes = useStyles();
+
+    const onSignIn = (e) => {
+        e.preventDefault();
+
+        if (!email) return;
+        if (!password) return;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(userAuth => {
+                dispatch({ type: userActions.login, payload: userAuth.user });
+                setEmail("");
+                setPassword("");
+                history.push("/");
+            });
+    }
 
     return (
         <Grid container className="signin-page">
@@ -29,14 +53,29 @@ const SignIn = (props) => {
                         <Typography variant="h6" component="h6">Your programming social network</Typography>
                         <Grid container spacing={2} justify="center">
                             <Grid item xs={10}>
-                                <TextField variant="outlined" fullWidth label="Username" name="username" />
+                                <TextField
+                                    variant="outlined"
+                                    fullWidth
+                                    label="Email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
                             </Grid>
                             <Grid item xs={10}>
-                                <TextField variant="outlined" fullWidth type="password" label="Password" name="password" />
+                                <TextField
+                                    variant="outlined"
+                                    fullWidth
+                                    type="password"
+                                    label="Password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                             </Grid>
                         </Grid>
 
-                        <button type="submit">Sign in</button>
+                        <button type="submit" onClick={onSignIn}>Sign in</button>
                     </form>
                 </Paper>
             </Grid>

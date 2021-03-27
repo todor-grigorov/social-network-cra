@@ -11,39 +11,46 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { useSelector } from "react-redux";
 
 
 
 const Navigation = (props) => {
-
+    const user = useSelector((state => state.user));
 
     return (
         <div className="nav">
-            {/* Public Navigation */}
-            <Link to="/">
-                <img src={logo} alt="logo" style={{ maxWidth: "7em" }} />
-            </Link>
-            <div className="">
-                <Link className="nav-btn-only-text" to="/register">Join now</Link>
-                <Link className="nav-btn-outlined" to="/signin">Sign in</Link>
-            </div>
-
-            {/* Private Navigation */}
-            {/* <div className="nav__left">
-                <img src={logo} alt="logo" style={{ maxWidth: "7em" }} />
-                <div className="nav__search">
-                    <SearchIcon />
-                    <input type="text" placeholder="Search" />
-                </div>
-            </div>
-            <div className="nav__right">
-                <NavigationOption Icon={HomeIcon} title="Home" />
-                <NavigationOption Icon={SupervisorAccountIcon} title="My Network" />
-                <NavigationOption Icon={BusinessCenterIcon} title="Jobs" />
-                <NavigationOption Icon={ChatIcon} title="Messages" />
-                <NavigationOption Icon={NotificationsIcon} title="Notifications" />
-                <NavigationOption avatar={avatarPic} title="My profile" />
-            </div> */}
+            {user.email ?
+                <>
+                    {/* Private Navigation */}
+                    <div className="nav__left">
+                        <img src={logo} alt="logo" style={{ maxWidth: "2em" }} />
+                        <div className="nav__search">
+                            <SearchIcon />
+                            <input type="text" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div className="nav__right">
+                        <NavigationOption Icon={HomeIcon} title="Home" />
+                        <NavigationOption Icon={SupervisorAccountIcon} title="My Network" />
+                        <NavigationOption Icon={BusinessCenterIcon} title="Jobs" />
+                        <NavigationOption Icon={ChatIcon} title="Messages" />
+                        <NavigationOption Icon={NotificationsIcon} title="Notifications" />
+                        <NavigationOption avatar={avatarPic} title="My profile" />
+                    </div>
+                </>
+                :
+                <>
+                    {/* Public Navigation */}
+                    <Link to="/">
+                        <img src={logo} alt="logo" style={{ maxWidth: "2em" }} />
+                    </Link>
+                    <div className="">
+                        <Link className="nav-btn-only-text" to="/register">Join now</Link>
+                        <Link className="nav-btn-outlined" to="/signin">Sign in</Link>
+                    </div>
+                </>
+            }
         </div>
     );
 }
