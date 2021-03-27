@@ -33,10 +33,10 @@ function Feed() {
     const sendPost = (e) => {
         e.preventDefault();
         db.collection("post").add({
-            name: 't.grigorov',
+            name: user.displayName,
             description: 'just a test',
             message: input,
-            photoUrl: '',
+            photoUrl: user.photoURL,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
@@ -67,6 +67,7 @@ function Feed() {
                         name={name}
                         description={description}
                         message={message}
+                        photoUrl={photoUrl}
                     />
                 )
             }
