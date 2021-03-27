@@ -34,7 +34,7 @@ const Register = (props) => {
         e.preventDefault();
 
         if (!fullName) return;
-        if (!photoUrl) return;
+        // if (!photoUrl) return; This should be optional. User can add/change picture from the User Profile page.
         if (!email) return;
         if (!password) return;
         if (!rePassword) return;
@@ -52,6 +52,11 @@ const Register = (props) => {
                     setRePassword("");
                     history.push("/signin");
                 });
+            })
+            .catch(err => {
+                // TODO:
+                // Push notification not alert
+                alert(err.message);
             });
     };
 

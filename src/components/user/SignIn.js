@@ -41,6 +41,11 @@ const SignIn = (props) => {
                 setEmail("");
                 setPassword("");
                 history.push("/");
+            })
+            .catch(err => {
+                // TODO:
+                // Push notification not alert
+                alert(err.message);
             });
     }
 
