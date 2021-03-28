@@ -12,11 +12,10 @@ const Widgets = () => {
     }, []);
 
     const fetchJobs = () => {
-        // const url = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
         if (loadingJobs)
             setLoadingJobs(true);
 
-        fetch(config.urls.gitHubJobs)
+        fetch(`${config.urls.gitHubJobs}?page=1`)
             .then((res) => res.json())
             .then((jobs) => {
                 setJobs(jobs.slice(0, 5));
