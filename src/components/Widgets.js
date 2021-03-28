@@ -11,7 +11,15 @@ const Widgets = () => {
 
     useEffect(() => {
         fetchJobs();
-        fetchQuetes();
+        fetchQuotes();
+        const interval = setInterval(() => {
+            fetchQuotes();
+        }, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+
     }, []);
 
     const fetchJobs = () => {
@@ -27,7 +35,7 @@ const Widgets = () => {
             .catch((err) => alert(err.message));
     };
 
-    const fetchQuetes = () => {
+    const fetchQuotes = () => {
         if (loadingQuote)
             setLoadingQuote(true);
 
