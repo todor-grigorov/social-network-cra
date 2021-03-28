@@ -31,7 +31,6 @@ const Navigation = (props) => {
 
     const handleCloseProfilePropsList = () => {
         setAnchorEl(null);
-        logout();
     };
 
     const renderProfilePropsList = () => (
@@ -44,7 +43,7 @@ const Navigation = (props) => {
         >
             <MenuItem onClick={handleCloseProfilePropsList}>Profile</MenuItem>
             {/* <MenuItem onClick={handleCloseProfilePropsList}>My account</MenuItem> */}
-            <MenuItem onClick={handleCloseProfilePropsList} >Logout</MenuItem>
+            <MenuItem onClick={logout} >Logout</MenuItem>
         </Menu>
     );
 

@@ -17,6 +17,7 @@ import Feed from './components/Feed';
 import { auth } from './firebase/firebase';
 import userActions from './redux/actions/userActions';
 import { Backdrop, CircularProgress } from '@material-ui/core';
+import Widgets from './components/Widgets';
 
 // rafce
 // rfce
@@ -77,7 +78,7 @@ function App() {
               <div className="app__body">
                 <Sidebar />
                 <Feed />
-                {/* <Widgets /> */}
+                <Widgets />
               </div>
             </Route>
             <Route path="/" >
