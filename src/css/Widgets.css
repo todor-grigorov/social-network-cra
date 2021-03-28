@@ -1,8 +1,14 @@
 .widgets {
+    display: flex;
+    flex-direction: column;
     position: sticky;
     height: fit-content;
     top: 80px;
     flex: 0.2;
+}
+
+.widget {
+    margin-bottom: 10px;
     padding-bottom: 10px;
     background-color: #fff;
     border-radius: 10px;
@@ -28,7 +34,7 @@
     justify-content: center;
 }
 
-.article {
+.article, .quote {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -47,15 +53,22 @@
     color: black;
 }
 
-.article__description {
+.article__description, .quote__author {
     color: gray;
     font-size: 0.7rem;
 }
 
-.article__notAvailable {
+.article__notAvailable, .quote__notAvailable {
     font-size: 15px;
     font-weight: 700;
     color: gray;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.quote__body {
+    font-size: 0.7rem;
+    font-style: italic;
+    font-weight: 600;
+    color: black;
 }
