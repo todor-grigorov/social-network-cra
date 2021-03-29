@@ -117,3 +117,7 @@
 .nav__right {
     display: flex;
 }
+
+.nav__right > a {
+    text-decoration: none;
+}

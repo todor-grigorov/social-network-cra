@@ -72,9 +72,9 @@ const Navigation = (props) => {
                         </div>
                     </div>
                     <div className="nav__right">
-                        <NavigationOption Icon={HomeIcon} title="Home" />
+                        <Link to="/feed"><NavigationOption Icon={HomeIcon} title="Home" /></Link>
                         <NavigationOption Icon={SupervisorAccountIcon} title="My Network" />
-                        <NavigationOption Icon={BusinessCenterIcon} title="Jobs" />
+                        <Link to="/jobs"><NavigationOption Icon={BusinessCenterIcon} title="Jobs" /></Link>
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />
                         <NavigationOption avatar={true} title="My profile" clickHandler={handleProfileBtnClick} />

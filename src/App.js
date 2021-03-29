@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
 import SignIn from './components/user/SignIn';
 import Register from './components/user/Register';
+import Jobs from './components/Jobs';
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -80,6 +81,9 @@ function App() {
                 <Feed />
                 <Widgets />
               </div>
+            </Route>
+            <Route path="/jobs">
+              <Jobs />
             </Route>
             <Route path="/" >
               <HomePage />
