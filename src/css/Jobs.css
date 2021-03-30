@@ -1,6 +1,52 @@
 .jobs {
     width:inherit;
-    display: flex;
+    display: flex;  
     flex-direction: column;
     background-color: #fff;
+}
+
+.job__details {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid lightgrey;
+    padding: 20px 10px;
+    /* margin-bottom: 10px; */
+}
+
+.job__details:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.job__mainDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.job__title {
+    color: DodgerBlue;
+    margin-bottom: 5px;
+}
+
+.job__companyAndType {
+    color: gray;
+    font-size: 0.75rem;
+}
+
+.job__companyAndType > span:nth-child(2) {
+    color: green;
+    font-weight: 700;
+}
+
+.job_otherDetails {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.job_otherDetails > span {
+    color: gray;
+    font-size: 0.75rem;
+    align-self: flex-end;
 }
