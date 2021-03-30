@@ -7,7 +7,7 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import '../css/Post.css';
 import InputOption from './InputOption';
 
-const Post = forwardRef(({ name, description, message, photoUrl, userPhotoUrl, type }, ref) => {
+const Post = forwardRef(({ name, description, message, photoUrl, userPhotoUrl, videoUrl, type }, ref) => {
     return (
         <div ref={ref} className="post">
             <div className="post__header">
@@ -20,8 +20,15 @@ const Post = forwardRef(({ name, description, message, photoUrl, userPhotoUrl, t
 
             <div className="post__body">
                 <p>{message}</p>
-                {photoUrl ?
+                {photoUrl && type === "image" ?
                     <img src={photoUrl} alt="post-pic" />
+                    :
+                    (null)
+                }
+                {videoUrl && type === "video" ?
+                    <video src={videoUrl} controls>
+                        Your browser does not support the video tag.
+                    </video>
                     :
                     (null)
                 }

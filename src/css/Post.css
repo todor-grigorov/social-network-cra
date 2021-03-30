@@ -34,7 +34,7 @@
     justify-content: space-evenly;
 }
 
-.post__body > img {
+.post__body > img, video {
     width: 100%;
 }
 

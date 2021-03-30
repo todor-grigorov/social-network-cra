@@ -26,7 +26,7 @@ function Feed() {
         <div className="feed">
             <CreatePost />
             <FlipMove>
-                {posts.map(({ id, data: { name, description, message, photoUrl, userPhotoUrl, type } }) => {
+                {posts.map(({ id, data: { name, description, message, photoUrl, userPhotoUrl, videoUrl, type } }) => {
                     return (
                         <Post
                             key={id}
@@ -34,7 +34,9 @@ function Feed() {
                             description={description}
                             message={message}
                             photoUrl={photoUrl}
+                            videoUrl={videoUrl}
                             userPhotoUrl={userPhotoUrl}
+                            type={type}
                         />
                     )
                 }

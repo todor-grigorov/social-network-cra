@@ -72,6 +72,12 @@ const CreatePost = () => {
         document.getElementById("upload-file").onchange = (e) => onFileChange(e, "image");
     };
 
+    const handleVideoClick = () => {
+        document.getElementById("upload-file").accept = ".MP4, .MOV, .WMV, .FLV, .AVI, .AVCHD, .WebM, .MKV";
+        document.getElementById("upload-file").click();
+        document.getElementById("upload-file").onchange = (e) => onFileChange(e, "video");
+    };
+
     const handleCloseDialog = () => {
         setOpenDialog(false);
     };
@@ -95,7 +101,16 @@ const CreatePost = () => {
                     </div>
                 </div>
                 <input type="text" placeholder="What do you want to talk about?" onChange={(e) => setInput(e.target.value)} />
-                <img src={fileURL} alt="post-pic" />
+                {type === "image" ?
+                    <img src={fileURL} alt="post-pic" />
+                    :
+                    type === "video" ?
+                        <video src={fileURL} controls>
+                            Your browser does not support the video tag.
+                    </video>
+                        :
+                        (null)
+                }
             </DialogContent>
             <DialogActions>
                 <Button onClick={sendPost} color="primary">
@@ -116,7 +131,7 @@ const CreatePost = () => {
             </div>
             <div className="feed__inputOptions">
                 <InputOption Icon={ImageIcon} title="Photo" color="#70b5f9" handleClick={handlePhotoClick} />
-                <InputOption Icon={EventNoteIcon} title="Video" color="#e7a33e" />
+                <InputOption Icon={EventNoteIcon} title="Video" color="#e7a33e" handleClick={handleVideoClick} />
                 <InputOption Icon={SubscriptionsIcon} title="Event" color="#c0cbcd" />
                 <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#7fc15e" />
                 <input id="upload-file" type="file" style={{ display: "none" }} />
