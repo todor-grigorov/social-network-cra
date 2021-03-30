@@ -7,11 +7,11 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import '../css/Post.css';
 import InputOption from './InputOption';
 
-const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
+const Post = forwardRef(({ name, description, message, photoUrl, userPhotoUrl, type }, ref) => {
     return (
         <div ref={ref} className="post">
             <div className="post__header">
-                <Avatar src={photoUrl || ''} alt="user-avatar" >{name[0].toUpperCase()}</Avatar>
+                <Avatar src={userPhotoUrl || ''} alt="user-avatar" >{name[0].toUpperCase()}</Avatar>
                 <div className="post__info">
                     <h2>{name}</h2>
                     <p>{description}</p>
@@ -20,6 +20,11 @@ const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
 
             <div className="post__body">
                 <p>{message}</p>
+                {photoUrl ?
+                    <img src={photoUrl} alt="post-pic" />
+                    :
+                    (null)
+                }
             </div>
 
             <div className="post__buttons">

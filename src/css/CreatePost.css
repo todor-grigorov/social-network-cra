@@ -1,0 +1,20 @@
+.createPost__dialogTitle {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.createPost__dialogContent {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.createPost__dialogContent > input {
+    margin-bottom: 20%;
+    border: none;
+    background: #ffffff;
+    outline: none;
+    line-height: 24px;
+    font-size: 20px;
+}
