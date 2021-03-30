@@ -1,8 +1,24 @@
+.jobs__container {
+    display: flex;
+    max-width: 800px;
+    min-height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .jobs {
     width:inherit;
     display: flex;  
     flex-direction: column;
     background-color: #fff;
+}
+
+.jobs__spinner {
+    width: 800px;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .job__details {
@@ -49,4 +65,11 @@
     color: gray;
     font-size: 0.75rem;
     align-self: flex-end;
+}
+
+.jobs__pagination {
+    display: flex;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    padding: 20px 0;
 }

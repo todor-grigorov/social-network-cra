@@ -83,9 +83,7 @@ function App() {
               </div>
             </Route>
             <Route path="/jobs">
-              <div className="app__body">
-                <Jobs />
-              </div>
+              <Jobs />
             </Route>
             <Route path="/" >
               <HomePage />
