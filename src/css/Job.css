@@ -1,0 +1,101 @@
+.job__container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    max-width: 1000px;
+    min-height: 100%;
+}
+
+.job__goBack {
+    display: flex;
+    max-width: 1000px;
+    padding: 10px 0;
+}
+
+.job__goBack > a {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.job {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid lightgrey;
+    margin-bottom: 10px;
+    max-width: 1000px;
+}
+
+.job__header {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.job__header > p {
+    color: gray;
+    font-size: 0.65rem;
+}
+
+.job__header > span {
+    line-height: 26px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.job__body {
+    display: flex;
+}
+
+.job__body > p {
+    /* max-width: 90ch; */
+    flex: 0.75;
+    padding: 20px;
+    font-size: 0.7rem;
+}
+
+.job__otherDetails {
+    display: flex;
+    flex: 0.25;
+    max-width: 25%;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.job__brand, .job__apply {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 5px solid lightgrey;
+    padding: 10px;
+}
+
+.job__brand > span, .job__apply > span {
+    padding: 3px 0 5px 0;
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid lightgrey;
+}
+
+.job__brand > img {
+    max-width: 200px;
+    padding: 10px 0;
+}
+
+.job__brand > a {
+    padding: 10px 0 2px 0;
+    font-size: 0.6rem;
+    color: dodgerblue;
+}
+
+.job__apply {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.job__apply > p {
+    font-size: 0.6rem;
+    padding: 10px 5px;
+}

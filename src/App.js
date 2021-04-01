@@ -19,6 +19,7 @@ import { auth } from './firebase/firebase';
 import userActions from './redux/actions/userActions';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import Widgets from './components/Widgets';
+import Job from './components/Job';
 
 // rafce
 // rfce
@@ -83,7 +84,14 @@ function App() {
               </div>
             </Route>
             <Route path="/jobs">
-              <Jobs />
+              <Switch>
+                <Route path={`/jobs/:jobId`}>
+                  <Job />
+                </Route>
+                <Route path={`/jobs`}>
+                  <Jobs />
+                </Route>
+              </Switch>
             </Route>
             <Route path="/" >
               <HomePage />

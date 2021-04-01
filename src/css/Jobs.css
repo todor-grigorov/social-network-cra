@@ -13,6 +13,10 @@
     background-color: #fff;
 }
 
+.jobs > a {
+    text-decoration: none !important;
+}
+
 .jobs__spinner {
     width: 800px;
     height: 90vh;
