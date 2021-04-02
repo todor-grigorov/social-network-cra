@@ -75,7 +75,7 @@ const Profile = () => {
                                 :
                                 <span className="profile__empty__detail"> Your postal code here</span>
                         }
-                        <div className="profile__github">
+                        <span className="profile__github">
                             <span>GitHub:</span>
                             {
                                 user.github ?
@@ -83,7 +83,7 @@ const Profile = () => {
                                     :
                                     <span className="profile__empty__detail"> Enter your GitHub Profile</span>
                             }
-                        </div>
+                        </span>
                     </p>
                 </div>
                 {

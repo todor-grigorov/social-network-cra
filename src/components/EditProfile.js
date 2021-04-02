@@ -56,14 +56,26 @@ const EditProfile = () => {
                         photoURL: fileUrl
                     })
                         .then((res) => {
-                            dispatch({
-                                type: userActions.login,
-                                payload: {
-                                    ...user,
+                            db.collection("users").doc(docId)
+                                .update({
                                     photoURL: fileUrl
-                                }
-                            });
-                            setLoading(false);
+                                })
+                                .then(() => {
+                                    dispatch({
+                                        type: userActions.login,
+                                        payload: {
+                                            ...user,
+                                            photoURL: fileUrl
+                                        }
+                                    });
+                                    setLoading(false);
+                                })
+                                .catch((err) => {
+                                    // TODO:
+                                    // Push notification not alert
+                                    setLoading(false);
+                                    alert(err.message);
+                                });
                         })
                         .catch((err) => {
                             // TODO:
@@ -127,6 +139,7 @@ const EditProfile = () => {
             .then(() => {
                 db.collection("users").doc(docId)
                     .update({
+                        displayName: displayName,
                         city: city,
                         company: company,
                         country: country,

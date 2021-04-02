@@ -66,6 +66,9 @@ const Register = (props) => {
                         headline: "",
                         postalCode: "",
                         github: "",
+                        photoURL: "",
+                        displayName: fullName,
+                        email: email,
                     })
                         .then(() => {
                             history.push("/signin");

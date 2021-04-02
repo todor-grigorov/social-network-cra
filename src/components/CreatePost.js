@@ -34,21 +34,27 @@ const CreatePost = () => {
 
     const sendPost = (e) => {
         e.preventDefault();
-        db.collection("post").add({
-            name: user.displayName,
-            description: user.email,
+        db.collection("posts").add({
+            uid: user.uid,
             message: input,
-            userPhotoUrl: user.photoURL,
             type: type,
             photoUrl: type === "image" ? fileURL : "",
             videoUrl: type === "video" ? fileURL : "",
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        })
+            .then((docRef) => {
+                setInput("");
+                setFileURL("");
+                setType("");
+                setOpenDialog(false);
+            })
+            .catch(err => {
+                // TODO:
+                // Push notification not alert
+                alert(err.message);
+            });
 
-        setInput("");
-        setFileURL("");
-        setType("");
-        setOpenDialog(false);
+
     };
 
     const onFileChange = (e, type) => {

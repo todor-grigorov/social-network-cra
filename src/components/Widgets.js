@@ -43,7 +43,6 @@ const Widgets = () => {
         fetch(config.urls.randomProgrammingQuote)
             .then((res) => res.json())
             .then((quete) => {
-                console.log(quete);
                 setQuote(quete);
                 setLoadingQuote(false);
             })

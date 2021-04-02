@@ -47,10 +47,10 @@ const SignIn = (props) => {
                         type: userActions.login,
                         payload: {
                             ...doc.data(),
-                            displayName: userAuth.user.displayName,
+                            // displayName: userAuth.user.displayName,
                             email: userAuth.user.email,
                             uid: userAuth.user.uid,
-                            photoURL: userAuth.user.photoURL
+                            // photoURL: userAuth.user.photoURL
                         }
                     });
                     setEmail("");

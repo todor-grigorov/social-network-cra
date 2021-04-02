@@ -116,6 +116,7 @@
 
 .nav__right {
     display: flex;
+    position: relative;
 }
 
 .nav__right > a {

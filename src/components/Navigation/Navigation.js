@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
 import '../../css/Navigation.css';
@@ -10,35 +10,48 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from "react-redux";
-import { Menu, MenuItem } from "@material-ui/core";
+import { Card, Menu, MenuItem } from "@material-ui/core";
 import { auth } from '../../firebase/firebase';
 
 
 const Navigation = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
     const user = useSelector((state => state.user));
     let history = useHistory();
 
-    const handleCloseProfilePropsList = () => {
+    const handleProfilePropsList = () => {
+        setShowMenu(false)
         setAnchorEl(null);
         history.push("/profile");
     };
 
-    const renderProfilePropsList = () => (
-        <Menu
-            id="user-profile-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleCloseProfilePropsList}
-        >
-            <MenuItem onClick={handleCloseProfilePropsList}>Profile</MenuItem>
-            {/* <MenuItem onClick={handleCloseProfilePropsList}>My account</MenuItem> */}
-            <MenuItem onClick={logout} >Logout</MenuItem>
-        </Menu>
-    );
+    const handleCloseProfilePropsList = () => {
+        setShowMenu(false)
+        setAnchorEl(null);
+    };
+
+    const renderProfilePropsList = () => {
+        return (
+            showMenu && user.email && user.displayName ?
+                <Menu
+                    id="user-profile-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleCloseProfilePropsList}
+                >
+                    <MenuItem onClick={handleProfilePropsList}>Profile</MenuItem>
+                    {/* <MenuItem onClick={handleCloseProfilePropsList}>My account</MenuItem> */}
+                    <MenuItem onClick={logout} >Logout</MenuItem>
+                </Menu>
+                :
+                (null)
+        );
+    }
 
     const handleProfileBtnClick = (event) => {
+        setShowMenu(true);
         setAnchorEl(event.currentTarget);
     };
 
@@ -46,13 +59,15 @@ const Navigation = () => {
         auth.signOut()
             .then(() => {
                 // dispatch({ type: userActions.logOut });
+                setAnchorEl(null);
+                setShowMenu(false);
                 history.push("/");
             });
     };
 
     return (
         <div className="nav">
-            {user.email ?
+            {user.email && user.displayName ?
                 <>
                     {/* Private Navigation */}
                     <div className="nav__left">
@@ -69,11 +84,7 @@ const Navigation = () => {
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />
                         <NavigationOption avatar={true} title="My profile" clickHandler={handleProfileBtnClick} />
-                        {anchorEl ?
-                            renderProfilePropsList()
-                            :
-                            (null)
-                        }
+                        {renderProfilePropsList()}
                     </div>
                 </>
                 :
