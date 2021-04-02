@@ -14,7 +14,7 @@ import { Menu, MenuItem } from "@material-ui/core";
 import { auth } from '../../firebase/firebase';
 
 
-const Navigation = (props) => {
+const Navigation = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const user = useSelector((state => state.user));
     let history = useHistory();
@@ -69,7 +69,11 @@ const Navigation = (props) => {
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />
                         <NavigationOption avatar={true} title="My profile" clickHandler={handleProfileBtnClick} />
-                        {renderProfilePropsList()}
+                        {anchorEl ?
+                            renderProfilePropsList()
+                            :
+                            (null)
+                        }
                     </div>
                 </>
                 :
