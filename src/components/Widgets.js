@@ -1,5 +1,6 @@
 import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import config from '../configs/config';
 import '../css/Widgets.css';
 
@@ -62,12 +63,12 @@ const Widgets = () => {
                         :
                         jobs.length ?
                             jobs.map((job) =>
-                                <a key={job.id} className="article" href={job.url} target="_blank" rel="noreferrer">
+                                <Link key={job.id} className="article" to={`/jobs/:${job.id}`}>
                                     <div className="article__title">{job.title}</div>
                                     <p className="article__description">
                                         {job.location}
                                     </p>
-                                </a>
+                                </Link>
                             )
                             :
                             <p className="article__notAvailable">No Jobs Available</p>
