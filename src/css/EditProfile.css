@@ -1,3 +1,13 @@
+.editProfile__loading {
+    position: absolute;
+    min-width: 100%;
+    min-height: 90vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255,255,255, 0.4);
+}
 .editProfile {
     display: flex;
     flex-direction: column;
@@ -36,4 +46,19 @@
     height: 100px !important;
     bottom: 60px;
     margin-left: 10px;
+}
+
+.editProfile__bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px;
+}
+
+.editProfile__bottom > div {
+    margin-bottom: 20px !important;
+}
+
+.editProfile__bottom > button {
+    max-width: 80px;
+    align-self: flex-end;
 }

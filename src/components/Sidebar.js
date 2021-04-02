@@ -25,11 +25,12 @@ const Sidebar = () => {
                         <img src={background} alt="bacground" />
                 }
                 <Link to="/profile">
-                    <Avatar className="sidebar__avatar" alt="user photo" src={user.photoURL || ''} >{user.email[0].toUpperCase()}</Avatar>
+                    <Avatar className="sidebar__avatar" alt="user photo" src={user.photoURL || ''} >{user.email ? user.email[0].toUpperCase() : 'T'}</Avatar>
                 </Link>
                 <Link to="/profile">
                     <h2 className="sidebar__top__name">{user.displayName || "New user"}</h2>
                 </Link>
+                <h3>{user.headline || "Headline goes here"}</h3>
                 <h4>{user.email || "Add yor email"}</h4>
             </div>
             <div className="sidebar__stats">

@@ -19,6 +19,13 @@
     border-top-left-radius: 10px;
 }
 
+.sidebar__top > h3 {
+    color: gray;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
 .sidebar__top > h4 {
     color: gray;
     font-size: 12px;

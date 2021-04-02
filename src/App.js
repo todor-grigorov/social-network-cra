@@ -54,7 +54,7 @@ function App() {
               photoURL: userAuth.photoURL
             }
           });
-          history.push("/feed");
+          history.push(history.length ? history.location.pathname : "/feed");
         });
 
       } else {

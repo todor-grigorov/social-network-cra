@@ -39,7 +39,7 @@ const Profile = () => {
                         <img src={background} alt="bacground" />
                 }
                 <div>
-                    <Avatar className="profile-avatar" src={user.photoURL || ''} alt="user-avatar" >{user.displayName[0].toUpperCase()}</Avatar>
+                    <Avatar className="profile-avatar" src={user.photoURL || ''} alt="user-avatar" >{user.email ? user.email[0].toUpperCase() : 'T'}</Avatar>
                     <Link to={`/profile/edit/${user.uid}`}>
                         <Fab color="primary" aria-label="edit" style={{ marginRight: "10px", marginTop: "10px" }}>
                             <EditIcon />

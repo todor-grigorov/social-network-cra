@@ -11,7 +11,7 @@ const Post = forwardRef(({ name, description, message, photoUrl, userPhotoUrl, v
     return (
         <div ref={ref} className="post">
             <div className="post__header">
-                <Avatar src={userPhotoUrl || ''} alt="user-avatar" >{name[0].toUpperCase()}</Avatar>
+                <Avatar src={userPhotoUrl || ''} alt="user-avatar" >{name ? name[0].toUpperCase() : 'T'}</Avatar>
                 <div className="post__info">
                     <h2>{name}</h2>
                     <p>{description}</p>

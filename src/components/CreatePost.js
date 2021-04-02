@@ -52,7 +52,6 @@ const CreatePost = () => {
     };
 
     const onFileChange = (e, type) => {
-        // console.log(e.target.files[0]);
         setFileURL("");
         const file = e.target.files[0];
         const storageRef = storage.ref();
@@ -94,7 +93,7 @@ const CreatePost = () => {
             </div>
             <DialogContent dividers className="createPost__dialogContent">
                 <div className="post__header">
-                    <Avatar src={user.photoURL || ''} alt="user-avatar" >{user.displayName ? user.displayName[0].toUpperCase() : ''}</Avatar>
+                    <Avatar src={user.photoURL || ''} alt="user-avatar" >{user.email ? user.email[0].toUpperCase() : ''}</Avatar>
                     <div className="post__info">
                         <h2>{user.displayName}</h2>
                         <p>{user.email}</p>
