@@ -69,6 +69,7 @@ const EditProfile = () => {
                                         }
                                     });
                                     setLoading(false);
+                                    history.push(`/profile/edit/${user.uid}`);
                                 })
                                 .catch((err) => {
                                     // TODO:
@@ -97,6 +98,7 @@ const EditProfile = () => {
                                 }
                             });
                             setLoading(false);
+                            history.push(`/profile/edit/${user.uid}`);
                         })
                         .catch((err) => {
                             // TODO:
