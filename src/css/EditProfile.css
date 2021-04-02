@@ -32,7 +32,7 @@
 
 .editProfile__background > img {
     object-fit: cover;
-    max-height: 300px;
+    max-height: 250px;
     width: 100%;
 }
 
@@ -42,10 +42,10 @@
 }
 
 .editProfile-avatar {
-    width: 100px !important;
-    height: 100px !important;
+    width: 140px !important;
+    height: 140px !important;
     bottom: 60px;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 .editProfile__bottom {

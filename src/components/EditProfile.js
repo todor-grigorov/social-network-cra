@@ -180,7 +180,7 @@ const EditProfile = () => {
                     </div>
                     <div className="editProfile__avatar">
                         <Avatar className="editProfile-avatar" src={user.photoURL || ''} alt="user-avatar" >{user.email ? user.email[0].toUpperCase() : 'T'}</Avatar>
-                        <Fab onClick={handleAvatarClick} color="primary" size="small" aria-label="edit" style={{ position: "absolute", left: 75 }}>
+                        <Fab onClick={handleAvatarClick} color="primary" size="small" aria-label="edit" style={{ position: "absolute", left: 130, top: 30 }}>
                             <EditIcon size="small" aria-label="edit" style={{ width: 24, height: 24 }} />
                         </Fab>
                     </div>
