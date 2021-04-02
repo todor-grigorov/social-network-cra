@@ -20,6 +20,8 @@ const EditProfile = () => {
     const [city, setCity] = useState(user.city);
     const [postalCode, setPostalCode] = useState(user.postalCode);
     const [company, setCompany] = useState(user.company);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
@@ -109,7 +111,14 @@ const EditProfile = () => {
     const handleUserDetailsSubmit = (e) => {
         e.preventDefault();
 
+        if (!displayName) {
+            setError(true);
+            setErrorMessage("Full Name can't be empty");
+            return;
+        }
         const currUser = auth.currentUser;
+        if (error) setError(false);
+        if (errorMessage) setErrorMessage("");
         setLoading(true);
         currUser.updateProfile({
             displayName: displayName
@@ -187,15 +196,17 @@ const EditProfile = () => {
                 </div>
                 <form className="editProfile__bottom">
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-error-full-name"
                         label="Full Name"
                         defaultValue="Enter Full Name"
                         variant="outlined"
                         value={displayName}
+                        error={error}
+                        helperText={errorMessage}
                         onChange={(e) => setDisplayName(e.target.value)}
                     />
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-headline"
                         label="Headline"
                         defaultValue="Enter Headline"
                         variant="outlined"
@@ -203,7 +214,7 @@ const EditProfile = () => {
                         onChange={(e) => setHeadline(e.target.value)}
                     />
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-compnay"
                         label="Compnay"
                         defaultValue="Enter Compnay"
                         variant="outlined"
@@ -211,7 +222,7 @@ const EditProfile = () => {
                         onChange={(e) => setCompany(e.target.value)}
                     />
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-country"
                         label="Country"
                         defaultValue="Enter Country"
                         variant="outlined"
@@ -219,7 +230,7 @@ const EditProfile = () => {
                         onChange={(e) => setCountry(e.target.value)}
                     />
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-city"
                         label="City"
                         defaultValue="Enter City"
                         variant="outlined"
@@ -227,7 +238,7 @@ const EditProfile = () => {
                         onChange={(e) => setCity(e.target.value)}
                     />
                     <TextField
-                        id="outlined-error-helper-text"
+                        id="outlined-oostal-code"
                         label="Postal Code"
                         defaultValue="Enter Postal Code"
                         variant="outlined"
