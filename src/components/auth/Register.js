@@ -19,10 +19,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props) => {
     const [fullName, setFullName] = useState("");
-    const [photoUrl, setPhotoUrl] = useState("");
+    // const [photoUrl, setPhotoUrl] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
+    const [fullNameError, setFullNameError] = useState({ error: false, message: "" });
+    const [emailError, setEmailError] = useState({ error: false, message: "" });
+    const [passwordError, setPasswordError] = useState({ error: false, message: "" });
+    const [rePasswordError, setRePasswordError] = useState({ error: false, message: "" });
 
 
     const classes = useStyles();
@@ -32,17 +36,26 @@ const Register = (props) => {
     const onRegister = (e) => {
         e.preventDefault();
 
-        if (!fullName) return;
+        if (!fullNameValidation(fullName)) return;
         // if (!photoUrl) return; This should be optional. User can add/change picture from the User Profile page.
-        if (!email) return;
-        if (!password) return;
-        if (!rePassword) return;
+        if (!emailValidation(email)) return;
+        if (!passwordValidation(password)) return;
+        if (!rePassValidation(rePassword)) return;
+        if (password !== rePassword) {
+            setRePasswordError({ error: true, message: "Password must be equa to Repeat password!" });
+            return;
+        }
+
+
+
+        setRePasswordError({ error: false, message: "" });
+        setEmailError({ error: false, message: "" });
 
         auth.createUserWithEmailAndPassword(email, password)
             .then(userAuth => {
                 userAuth.user.updateProfile({
                     displayName: fullName,
-                    photoURL: photoUrl,
+                    // photoURL: photoUrl,
                 }).then(() => {
                     db.collection("users").doc().set({
                         uid: userAuth.user.uid,
@@ -55,12 +68,12 @@ const Register = (props) => {
                         github: "",
                     })
                         .then(() => {
+                            history.push("/signin");
                             setFullName("");
-                            setPhotoUrl("");
+                            // setPhotoUrl("");
                             setEmail("");
                             setPassword("");
                             setRePassword("");
-                            history.push("/signin");
                         })
                         .catch(err => {
                             // TODO:
@@ -76,6 +89,79 @@ const Register = (props) => {
             });
     };
 
+    const handleFullNameChange = (e) => {
+        const name = e.target.value;
+        setFullName(name);
+        // fullNameValidation(name);
+    };
+
+    const handleEmailChange = (e) => {
+        const mail = e.target.value;
+        setEmail(mail);
+        // emailValidation(mail);
+    };
+
+    const handlePasswordChange = (e) => {
+        const pass = e.target.value;
+        setPassword(pass);
+        // passwordValidation(pass);
+    };
+
+    const handleRePasswordChange = (e) => {
+        const rePass = e.target.value;
+        setRePassword(rePass);
+        // rePassValidation(rePass);
+    };
+
+    const fullNameValidation = (name) => {
+        if (!name) {
+            setFullNameError({ error: true, message: "Full Name cannot be empty!" });
+            return false;
+        } else {
+            setFullNameError({ error: false, message: "" });
+            return true;
+        }
+    };
+
+    const emailValidation = (mail) => {
+        if (!mail) {
+            setEmailError({ error: true, message: "Email cannot be empty!" });
+            return false;
+        } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+            setEmailError({ error: true, message: "Email is badly formatted!" });
+            return false;
+        } else {
+            setEmailError({ error: false, message: "" });
+            return true;
+        }
+    };
+
+    const passwordValidation = (pass) => {
+        if (!pass) {
+            setPasswordError({ error: true, message: "Password cannot be empty!" });
+            return false;
+        } else if (pass.length < 6) {
+            setPasswordError({ error: true, message: "Password must be atleast 6 characters long!" });
+            return false;
+        } else {
+            setPasswordError({ error: false, message: "" });
+            return true;
+        }
+    };
+
+    const rePassValidation = (rePass) => {
+        if (!rePass) {
+            setRePasswordError({ error: true, message: "Repeat password cannot be empty!" });
+            return false;
+        } else if (rePass.length < 6) {
+            setRePasswordError({ error: true, message: "Repeat password must be atleast 6 characters long!" });
+            return false;
+        } else {
+            setRePasswordError({ error: false, message: "" });
+            return true;
+        }
+    };
+
     return (
         <Grid container className="register">
             <Grid item xs={3} className="register__container">
@@ -85,19 +171,19 @@ const Register = (props) => {
                             <form id="register__form" method="POST">
                                 <Grid container spacing={2} justify="center" alignItems="flex-end" style={{ height: "100%", paddingTop: "5%" }}>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth label="Full name" name="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                        <TextField error={fullNameError.error} helperText={fullNameError.message} variant="outlined" fullWidth label="Full name" name="fullName" value={fullName} onChange={handleFullNameChange} />
                                     </Grid>
-                                    <Grid item xs={10}>
+                                    {/* <Grid item xs={10}>
                                         <TextField variant="outlined" fullWidth label="Photo URL" name="photoUrl" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+                                    </Grid> */}
+                                    <Grid item xs={10}>
+                                        <TextField error={emailError.error} helperText={emailError.message} variant="outlined" fullWidth label="Email" name="email" value={email} onChange={handleEmailChange} />
                                     </Grid>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth label="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        <TextField error={passwordError.error} helperText={passwordError.message} variant="outlined" fullWidth type="password" label="Password" name="password" value={password} onChange={handlePasswordChange} />
                                     </Grid>
                                     <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth type="password" label="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                                    </Grid>
-                                    <Grid item xs={10}>
-                                        <TextField variant="outlined" fullWidth type="password" label="Repeat Password" name="rePassword" value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
+                                        <TextField error={rePasswordError.error} helperText={rePasswordError.message} variant="outlined" fullWidth type="password" label="Repeat Password" name="rePassword" value={rePassword} onChange={handleRePasswordChange} />
                                     </Grid>
                                     <Grid item xs={12} style={{ alignSelf: 'center' }}>
                                         <button type="submit" onClick={onRegister}>Register</button>

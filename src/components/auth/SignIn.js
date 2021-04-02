@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState({ error: false, message: "" });
+    const [passwordError, setPasswordError] = useState({ error: false, message: "" });
 
     const dispatch = useDispatch();
     let history = useHistory();
@@ -32,8 +34,8 @@ const SignIn = (props) => {
     const onSignIn = (e) => {
         e.preventDefault();
 
-        if (!email) return;
-        if (!password) return;
+        if (!emailValidation(email)) return;
+        if (!passwordValidation(password)) return;
 
         auth.signInWithEmailAndPassword(email, password)
             .then(userAuth => {
@@ -64,7 +66,33 @@ const SignIn = (props) => {
                 // Push notification not alert
                 alert(err.message);
             });
-    }
+    };
+
+    const emailValidation = (mail) => {
+        if (!mail) {
+            setEmailError({ error: true, message: "Email cannot be empty!" });
+            return false;
+        } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+            setEmailError({ error: true, message: "Email is badly formatted!" });
+            return false;
+        } else {
+            setEmailError({ error: false, message: "" });
+            return true;
+        }
+    };
+
+    const passwordValidation = (pass) => {
+        if (!pass) {
+            setPasswordError({ error: true, message: "Password cannot be empty!" });
+            return false;
+        } else if (pass.length < 6) {
+            setPasswordError({ error: true, message: "Password must be atleast 6 characters long!" });
+            return false;
+        } else {
+            setPasswordError({ error: false, message: "" });
+            return true;
+        }
+    };
 
     return (
         <Grid container className="signin-page">
@@ -80,6 +108,8 @@ const SignIn = (props) => {
                                     fullWidth
                                     label="Email"
                                     name="email"
+                                    error={emailError.error}
+                                    helperText={emailError.message}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -91,6 +121,8 @@ const SignIn = (props) => {
                                     type="password"
                                     label="Password"
                                     name="password"
+                                    error={passwordError.error}
+                                    helperText={passwordError.message}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
