@@ -12,14 +12,12 @@ const Job = () => {
     const [loading, setLoading] = useState(false);
 
     const { jobId } = useParams();
-    // let history = useHistory();
 
     const fetchJob = () => {
         if (!jobId) return;
 
         setLoading(true);
         const url = `${config.urls.gitHubJob}${jobId.substr(1)}.json?markdown=true`;
-        // const url = `https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions/7069cbcb-102d-4be6-bb72-4e0ba079e726.json?markdown=true`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {

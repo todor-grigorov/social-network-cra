@@ -8,7 +8,7 @@ const NavigationOption = ({ Icon, title, clickHandler, avatar = false }) => {
     return (
         <div className='navOption' onClick={clickHandler}>
             {Icon && <Icon className='navOption__icon' />}
-            {avatar && <Avatar className='navOption__icon' src={user.photoURL || ''} >{user.email[0].toUpperCase()}</Avatar>}
+            {avatar && <Avatar className='navOption__icon' style={{ fontSize: "0.7rem" }} src={user.photoURL || ''} >{user.email[0].toUpperCase()}</Avatar>}
             <h3 className='navOption__title'>{title}</h3>
         </div>
     )

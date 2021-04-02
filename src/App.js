@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
-import SignIn from './components/user/SignIn';
-import Register from './components/user/Register';
+import SignIn from './components/auth/SignIn';
+import Register from './components/auth/Register';
 import Jobs from './components/Jobs';
+import Profile from './components/Profile';
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -37,7 +38,7 @@ function App() {
     if (!loading) setLoading(true);
 
     auth.onAuthStateChanged(userAuth => {
-      if (userAuth) {
+      if (userAuth && userAuth.displayName) {
         dispatch({
           type: userActions.login,
           payload: {
@@ -64,7 +65,6 @@ function App() {
         </Backdrop>
         :
         <>
-          {/* TODO: */}
           {/* Render public or private Nav according to user credentials */}
           < Navigation />
           <Switch>
@@ -75,13 +75,15 @@ function App() {
               <Register />
             </Route>
             <Route path="/feed">
-              { /* TODO: */}
               {/* App Body for registered users */}
               <div className="app__body">
                 <Sidebar />
                 <Feed />
                 <Widgets />
               </div>
+            </Route>
+            <Route path="/profile">
+              <Profile />
             </Route>
             <Route path="/jobs">
               <Switch>

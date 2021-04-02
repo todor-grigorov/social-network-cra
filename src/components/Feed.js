@@ -4,7 +4,6 @@ import '../css/Feed.css';
 import CreatePost from './CreatePost';
 import Post from './Post';
 import { db } from '../firebase/firebase';
-import { useSelector } from "react-redux";
 import FlipMove from 'react-flip-move';
 
 function Feed() {
