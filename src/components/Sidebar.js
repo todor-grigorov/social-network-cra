@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import '../css/Sidebar.css';
-import background from '../resources/images/test_background.jpeg';
+import background from '../resources/images/default_background.jpg';
 
 const Sidebar = () => {
     const user = useSelector((state => state.user));
@@ -18,7 +18,12 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar__top">
-                <img src={background} alt="" />
+                {
+                    user.backgroundUrl ?
+                        <img src={user.backgroundUrl} alt="bacground" />
+                        :
+                        <img src={background} alt="bacground" />
+                }
                 <Link to="/profile">
                     <Avatar className="sidebar__avatar" alt="user photo" src={user.photoURL || ''} >{user.email[0].toUpperCase()}</Avatar>
                 </Link>

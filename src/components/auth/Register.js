@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
-import { auth } from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
 import '../../css/App.css';
 
 
@@ -44,12 +44,28 @@ const Register = (props) => {
                     displayName: fullName,
                     photoURL: photoUrl,
                 }).then(() => {
-                    setFullName("");
-                    setPhotoUrl("");
-                    setEmail("");
-                    setPassword("");
-                    setRePassword("");
-                    history.push("/signin");
+                    db.collection("users").doc().set({
+                        uid: userAuth.user.uid,
+                        backgroundUrl: "",
+                        city: "",
+                        company: "",
+                        country: "",
+                        headline: "",
+                        postalCode: "",
+                    })
+                        .then(() => {
+                            setFullName("");
+                            setPhotoUrl("");
+                            setEmail("");
+                            setPassword("");
+                            setRePassword("");
+                            history.push("/signin");
+                        })
+                        .catch(err => {
+                            // TODO:
+                            // Push notification not alert
+                            alert(err.message);
+                        });
                 });
             })
             .catch(err => {

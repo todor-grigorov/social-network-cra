@@ -64,7 +64,7 @@ const CreatePost = () => {
                 setOpenDialog(true);
             });
         });
-    }
+    };
 
     const handlePhotoClick = () => {
         document.getElementById("upload-file").accept = ".png, .bmp, .jpg, .jpeg, .gif";

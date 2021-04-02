@@ -7,6 +7,7 @@ import SignIn from './components/auth/SignIn';
 import Register from './components/auth/Register';
 import Jobs from './components/Jobs';
 import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -16,7 +17,7 @@ import {
 } from "react-router-dom";
 import Sidebar from './components/Sidebar';
 import Feed from './components/Feed';
-import { auth } from './firebase/firebase';
+import { auth, db } from './firebase/firebase';
 import userActions from './redux/actions/userActions';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import Widgets from './components/Widgets';
@@ -39,16 +40,23 @@ function App() {
 
     auth.onAuthStateChanged(userAuth => {
       if (userAuth && userAuth.displayName) {
-        dispatch({
-          type: userActions.login,
-          payload: {
-            displayName: userAuth.displayName,
-            email: userAuth.email,
-            uid: userAuth.uid,
-            photoURL: userAuth.photoURL
-          }
+        db.collection("users").where("uid", "==", userAuth.uid).onSnapshot(snapshot => {
+          if (snapshot.docs.length !== 1) return;
+          const doc = snapshot.docs[0];
+
+          dispatch({
+            type: userActions.login,
+            payload: {
+              ...doc.data(),
+              displayName: userAuth.displayName,
+              email: userAuth.email,
+              uid: userAuth.uid,
+              photoURL: userAuth.photoURL
+            }
+          });
+          history.push("/feed");
         });
-        history.push("/feed");
+
       } else {
         history.push("/");
         dispatch({ type: userActions.logOut });
@@ -83,14 +91,21 @@ function App() {
               </div>
             </Route>
             <Route path="/profile">
-              <Profile />
+              <Switch>
+                <Route path="/profile/edit/:userId">
+                  <EditProfile />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+              </Switch>
             </Route>
             <Route path="/jobs">
               <Switch>
                 <Route path={`/jobs/:jobId`}>
                   <Job />
                 </Route>
-                <Route path={`/jobs`}>
+                <Route path={`/`}>
                   <Jobs />
                 </Route>
               </Switch>
@@ -101,7 +116,7 @@ function App() {
           </Switch>
         </>
       }
-    </div>
+    </div >
   );
 }
 

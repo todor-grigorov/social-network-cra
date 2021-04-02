@@ -54,7 +54,7 @@ const Jobs = () => {
                     </div>
                     :
                     jobs.map((job) => (
-                        <Link to={`/jobs/:${job.id}`}>
+                        <Link key={job.id} to={`/jobs/:${job.id}`}>
                             <div key={job.id} className="job__details">
                                 <div className="job__mainDetails">
                                     <div className="job__title">{job.title}</div>

@@ -5,6 +5,12 @@ const initState = {
     email: '',
     uid: '',
     photoURL: '',
+    backgroundUrl: '',
+    city: '',
+    company: '',
+    country: '',
+    headline: '',
+    postalCode: '',
 }
 
 function userReducer(state = initState, action) {

@@ -23,6 +23,7 @@
     border: 5px solid lightgrey;
     margin-bottom: 10px;
     max-width: 1000px;
+    background-color: #fff;
 }
 
 .job__header {

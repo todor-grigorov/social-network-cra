@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { auth } from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import '../../css/App.css';
 import userActions from "../../redux/actions/userActions";
@@ -37,18 +37,27 @@ const SignIn = (props) => {
 
         auth.signInWithEmailAndPassword(email, password)
             .then(userAuth => {
-                dispatch({
-                    type: userActions.login,
-                    payload: {
-                        displayName: userAuth.user.displayName,
-                        email: userAuth.user.email,
-                        uid: userAuth.user.uid,
-                        photoURL: userAuth.user.photoURL
-                    }
+                db.collection("users").where("uid", "==", userAuth.user.uid).onSnapshot(snapshot => {
+                    if (snapshot.docs.length !== 1) return;
+                    const doc = snapshot.docs[0];
+
+                    dispatch({
+                        type: userActions.login,
+                        payload: {
+                            ...doc.data(),
+                            displayName: userAuth.user.displayName,
+                            email: userAuth.user.email,
+                            uid: userAuth.user.uid,
+                            photoURL: userAuth.user.photoURL
+                        }
+                    });
+                    setEmail("");
+                    setPassword("");
+                    history.push("/feed");
                 });
-                setEmail("");
-                setPassword("");
-                history.push("/feed");
+
+
+
             })
             .catch(err => {
                 // TODO:
