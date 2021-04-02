@@ -20,6 +20,7 @@ const EditProfile = () => {
     const [city, setCity] = useState(user.city);
     const [postalCode, setPostalCode] = useState(user.postalCode);
     const [company, setCompany] = useState(user.company);
+    const [github, setGithub] = useState("");
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -131,8 +132,10 @@ const EditProfile = () => {
                         country: country,
                         headline: headline,
                         postalCode: postalCode,
+                        github: github,
                     })
                     .then(() => {
+                        history.push('/profile');
                         dispatch({
                             type: userActions.login,
                             payload: {
@@ -143,6 +146,7 @@ const EditProfile = () => {
                                 country: country,
                                 headline: headline,
                                 postalCode: postalCode,
+                                github: github,
                             }
                         });
                         setLoading(false);
@@ -244,6 +248,14 @@ const EditProfile = () => {
                         variant="outlined"
                         value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-oostal-code"
+                        label="GitHub"
+                        defaultValue="Enter GitHub"
+                        variant="outlined"
+                        value={github}
+                        onChange={(e) => setGithub(e.target.value)}
                     />
 
                     <Button color="primary" variant="contained" onClick={handleUserDetailsSubmit}>save</Button>

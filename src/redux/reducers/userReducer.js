@@ -11,6 +11,7 @@ const initState = {
     country: '',
     headline: '',
     postalCode: '',
+    github: '',
 }
 
 function userReducer(state = initState, action) {

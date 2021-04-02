@@ -52,6 +52,7 @@ const Register = (props) => {
                         country: "",
                         headline: "",
                         postalCode: "",
+                        github: "",
                     })
                         .then(() => {
                             setFullName("");

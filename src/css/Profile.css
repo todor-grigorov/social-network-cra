@@ -68,3 +68,9 @@
 .profile__empty__detail {
     color: gray;
 }
+
+.profile__github {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
