@@ -57,7 +57,7 @@ const Register = (props) => {
                     displayName: fullName,
                     // photoURL: photoUrl,
                 }).then(() => {
-                    db.collection("users").doc().set({
+                    db.collection("users").doc(userAuth.user.uid.toString()).set({
                         uid: userAuth.user.uid,
                         backgroundUrl: "",
                         city: "",

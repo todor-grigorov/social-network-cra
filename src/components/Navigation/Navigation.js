@@ -9,16 +9,19 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Card, Menu, MenuItem } from "@material-ui/core";
 import { auth } from '../../firebase/firebase';
+import userActions from "../../redux/actions/userActions";
 
 
 const Navigation = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
+
     const user = useSelector((state => state.user));
     let history = useHistory();
+    const dispatch = useDispatch();
 
     const handleProfilePropsList = () => {
         setShowMenu(false)
@@ -61,6 +64,7 @@ const Navigation = () => {
                 // dispatch({ type: userActions.logOut });
                 setAnchorEl(null);
                 setShowMenu(false);
+                dispatch({ type: userActions.logOut });
                 history.push("/");
             });
     };
@@ -79,7 +83,7 @@ const Navigation = () => {
                     </div>
                     <div className="nav__right">
                         <Link to="/feed"><NavigationOption Icon={HomeIcon} title="Home" /></Link>
-                        <NavigationOption Icon={SupervisorAccountIcon} title="My Network" />
+                        <Link to="/network"><NavigationOption Icon={SupervisorAccountIcon} title="My Network" /></Link>
                         <Link to="/jobs"><NavigationOption Icon={BusinessCenterIcon} title="Jobs" /></Link>
                         <NavigationOption Icon={ChatIcon} title="Messages" />
                         <NavigationOption Icon={NotificationsIcon} title="Notifications" />

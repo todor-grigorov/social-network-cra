@@ -8,12 +8,14 @@ import Register from './components/auth/Register';
 import Jobs from './components/Jobs';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import MyNetwork from './components/MyNetwork';
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   Switch,
   Route,
-  useHistory
+  useHistory,
+  Redirect
 } from "react-router-dom";
 import Sidebar from './components/Sidebar';
 import Feed from './components/Feed';
@@ -110,8 +112,16 @@ function App() {
                 </Route>
               </Switch>
             </Route>
+            <Route path="/network">
+              <MyNetwork />
+            </Route>
             <Route path="/" >
-              <HomePage />
+              {
+                user.email && user.displayName ?
+                  <Redirect to="/feed" />
+                  :
+                  <HomePage />
+              }
             </Route>
           </Switch>
         </>

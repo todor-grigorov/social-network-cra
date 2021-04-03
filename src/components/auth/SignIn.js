@@ -39,9 +39,8 @@ const SignIn = (props) => {
 
         auth.signInWithEmailAndPassword(email, password)
             .then(userAuth => {
-                db.collection("users").where("uid", "==", userAuth.user.uid).onSnapshot(snapshot => {
-                    if (snapshot.docs.length !== 1) return;
-                    const doc = snapshot.docs[0];
+                db.collection("users").doc(userAuth.user.uid.toString()).get().then(doc => {
+                    if (!doc.exists) return;
 
                     dispatch({
                         type: userActions.login,

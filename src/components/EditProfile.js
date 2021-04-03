@@ -13,7 +13,7 @@ import userActions from '../redux/actions/userActions';
 const EditProfile = () => {
     const user = useSelector((state => state.user));
 
-    const [docId, setDocId] = useState("");
+    // const [docId, setDocId] = useState("");
     const [displayName, setDisplayName] = useState(user.displayName);
     const [headline, setHeadline] = useState(user.headline);
     const [country, setCountry] = useState(user.country);
@@ -29,19 +29,6 @@ const EditProfile = () => {
     let history = useHistory();
     const { userId } = useParams();
 
-    useEffect(() => {
-        if (user.uid !== userId) return;
-        db.collection("users").where("uid", "==", user.uid).onSnapshot(snapshot => {
-            if (snapshot.docs.length !== 1) return;
-            const doc = snapshot.docs[0];
-            setDocId(doc.id);
-
-        });
-
-        return () => {
-            setDocId("");
-        }
-    }, [user]);
 
     const onFileChange = (e, type) => {
         const file = e.target.files[0];
@@ -56,7 +43,7 @@ const EditProfile = () => {
                         photoURL: fileUrl
                     })
                         .then((res) => {
-                            db.collection("users").doc(docId)
+                            db.collection("users").doc(user.uid)
                                 .update({
                                     photoURL: fileUrl
                                 })
@@ -85,7 +72,7 @@ const EditProfile = () => {
                             alert(err.message);
                         });
                 } else if (type === "background") {
-                    db.collection("users").doc(docId)
+                    db.collection("users").doc(user.uid)
                         .update({
                             backgroundUrl: fileUrl
                         })
@@ -139,7 +126,7 @@ const EditProfile = () => {
             displayName: displayName
         })
             .then(() => {
-                db.collection("users").doc(docId)
+                db.collection("users").doc(user.uid)
                     .update({
                         displayName: displayName,
                         city: city,

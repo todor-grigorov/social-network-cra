@@ -8,34 +8,59 @@ import FlipMove from 'react-flip-move';
 
 function Feed() {
 
-    const [posts, setPosts,] = useState([]);
+    const [posts, setPosts] = useState([]);
+
+    const fetchUsers = (uids = []) => {
+        return new Promise((resolve, reject) => {
+            const promises = [];
+            uids.forEach(uid => {
+                promises.push(db.collection("users").doc(uid).get());
+            });
+
+            Promise.all(promises).then(users => {
+                resolve(users);
+            })
+                .catch(err => reject(err));
+        })
+    }
 
     useEffect(() => {
-        db.collection("posts").orderBy("timestamp", "desc").onSnapshot(postsSnapshot => {
+        const fetchPopulatedPosts = async () => {
 
-            let dataPosts = [];
-            // const id = postDoc.data().uid;
-            db.collection("users")
-                .onSnapshot((usersSnapshot) => {
-                    postsSnapshot.docs.forEach(postDoc => {
-                        // if (usersSnapshot.docs.length !== 1) return;
-                        usersSnapshot.docs.forEach(userDoc => {
-                            if (userDoc.data().uid === postDoc.data().uid) {
+            db.collection("posts").orderBy("timestamp", "desc").onSnapshot(async (postsSnapshot) => {
+                try {
+                    const uniqueUIDs = [...new Set(postsSnapshot.docs.map(x => x.data().uid))];
+                    const users = await fetchUsers(uniqueUIDs);
+                    let dataPosts = [];
+
+                    postsSnapshot.docs.forEach(post => {
+                        users.forEach(user => {
+                            if (user.data().uid === post.data().uid) {
                                 dataPosts.push({
-                                    id: postDoc.id,
-                                    data: postDoc.data(),
-                                    userRecord: userDoc.data(),
+                                    id: post.id,
+                                    data: post.data(),
+                                    userRecord: user.data(),
                                 });
                             }
                         })
+                    })
 
-                    });
 
                     if (dataPosts.length)
                         setPosts(dataPosts);
-                });
-        });
+
+                } catch (err) {
+                    // TODO:
+                    // Push notification not alert
+                    alert(err.message);
+                }
+            });
+
+        }
+
+        fetchPopulatedPosts();
     }, []);
+
 
     return (
         <div className="feed">

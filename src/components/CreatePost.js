@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     dialog: {
@@ -30,6 +31,7 @@ const CreatePost = () => {
     const [openDialog, setOpenDialog] = useState(false);
 
     const user = useSelector((state => state.user));
+    let history = useHistory();
     const classes = useStyles();
 
     const sendPost = (e) => {
