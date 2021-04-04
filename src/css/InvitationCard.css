@@ -24,6 +24,12 @@
 .invitationCard__avatar {
     width: 60px !important;
     height: 60px !important;
+    cursor: pointer;
+}
+
+.invitationCard__details > h5:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .invitationCard__details > h6 {
@@ -46,6 +52,9 @@
 }
 
 .invitationCard__buttons > button {
-    max-width: 35px !important;
-    min-width: 35px !important;
+    max-width: 25px !important;
+    min-width: 25px !important;
+    max-height: 25px !important;
+    min-height: 25px !important;
+    border-radius: 30%;
 }

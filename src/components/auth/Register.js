@@ -67,6 +67,7 @@ const Register = (props) => {
                         postalCode: "",
                         github: "",
                         photoURL: "",
+                        network: [],
                         displayName: fullName,
                         email: email,
                     })

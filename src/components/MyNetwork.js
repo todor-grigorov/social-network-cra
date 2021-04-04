@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TabPanel from './TabPanel';
 import InvitationCard from './InvitationCard';
 import '../css/MyNetwork.css';
@@ -18,14 +18,12 @@ const MyNetwork = () => {
         setTab(newValue);
     }
 
-    const renderInvitationCard = () => {
+    const fetch
 
-        return (
-            <div className="invitation__card">
-                <Avatar className="myNetwork__avatar" alt="user photo" src={user.photoURL || ''} >{user.email ? user.email[0].toUpperCase() : 'T'}</Avatar>
-            </div>
-        );
-    }
+    useEffect(() => {
+
+
+    }, []);
 
     return (
         <>

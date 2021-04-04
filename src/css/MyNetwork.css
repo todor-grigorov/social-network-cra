@@ -66,6 +66,10 @@
     color:black;
 }
 
+.myNetwork__card > h2:hover {
+    text-decoration: underline;
+}
+
 .myNetwork__card > h3 {
     color: gray;
     font-size: 13px;
