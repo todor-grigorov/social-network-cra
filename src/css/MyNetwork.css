@@ -1,6 +1,7 @@
 
-.myNetwork {
+.myNetwork, .invitations {
     display: flex;
+    flex-direction: column;
     min-width: 550px;
     max-width: 850px;
     min-height: 100%;
@@ -31,12 +32,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
 }
 
 .myNetwork__card:hover {
-    box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.59);
-    -webkit-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.59);
-    -moz-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.59);
+    box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
 }
 
 .myNetwork__card > img {
@@ -78,4 +83,35 @@
     margin-top: 15px;
     border-radius: 30px;
     font-size: 16px;
+}
+
+.invitations {
+    display: flex;
+    flex-direction: column;
+    min-width: 550px;
+    max-width: 850px;
+    min-height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.invitations > h4 {
+    padding: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.invitation_tabPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invitation_tabPanel > div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
 }
