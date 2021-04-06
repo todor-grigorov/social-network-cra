@@ -1,3 +1,20 @@
+# Social Network App.
+ReactJS Application created using Create React App.
+Firebase is used for Backend service.
+Firestore (Firebase) is used for Database.
+Firebase Authentication is used for user Authentication.
+
+The App gives the user the opportunity to create an account in Firebase.
+Public users (users that don't have an account) can only access the landing page, register and sing in pages.
+Registered users can access the Feedback. They can create a Post which can be only text or combination of text and image/video.
+In the Feed component the can view the latest 5 jobs from GitHub Jobs API and a programming quote from API (http://quotes.stormconsultancy.co.uk)
+They can also view and edit their profile details.
+They can view list of jobs from GitHub Jobs API and change pages using pagination.
+They can preview every single job from GitHub Jobs API.
+The user can connetect with other users.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
