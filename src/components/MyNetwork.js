@@ -246,27 +246,29 @@ const MyNetwork = () => {
             </div>
             <div className="myNetwork">
                 <div className="myNetwork__cards">
-                    {connectUsers.map((user) => (
-                        <div key={user.uid} id={user.uid} className="myNetwork__card">
-                            {user.backgroundUrl ? (
-                                <img src={user.backgroundUrl} alt="bacground" />
+                    {connectUsers.map((userr) => (
+                        <div key={userr.uid} id={userr.uid} className="myNetwork__card">
+                            {userr.backgroundUrl ? (
+                                <img src={userr.backgroundUrl} alt="bacground" />
                             ) : (
                                 <img src={background} alt="bacground" />
                             )}
                             <Avatar
                                 className="myNetwork__avatar"
                                 alt="user photo"
-                                src={user.photoURL || ""}
+                                src={userr.photoURL || ""}
                             >
-                                {user.email ? user.email[0].toUpperCase() : "T"}
+                                {userr.email ? userr.email[0].toUpperCase() : "T"}
                             </Avatar>
-                            <h2>{user.displayName || "New user"}</h2>
-                            <h3>{user.headline || "Headline goes here"}</h3>
-                            <h4>{user.email || "Add yor email"}</h4>
+                            <Link to={`/profile/${userr.uid}`}>
+                                <h2 className="myNetwork_name">{userr.displayName || "New user"}</h2>
+                            </Link>
+                            <h3>{userr.headline || "Headline goes here"}</h3>
+                            <h4>{userr.email || "Add yor email"}</h4>
                             <Button
                                 variant="outlined"
                                 color="primary"
-                                onClick={(e) => handleConnectClick(e, user.uid)}
+                                onClick={(e) => handleConnectClick(e, userr.uid)}
                             >
                                 connect
               </Button>

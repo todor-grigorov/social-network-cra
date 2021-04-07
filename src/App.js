@@ -97,6 +97,9 @@ function App() {
                 <Route path="/profile/edit/:userId">
                   <EditProfile />
                 </Route>
+                <Route path="/profile/:userId">
+                  <Profile />
+                </Route>
                 <Route path="/profile">
                   <Profile />
                 </Route>
