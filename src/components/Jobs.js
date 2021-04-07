@@ -26,16 +26,18 @@ const Jobs = () => {
 
     const calculateDate = (createdAt) => {
         let result = "";
-        const jobDate = new Date(createdAt).getDate();
-        const currDate = new Date().getDate();
-        const daysAgo = currDate - jobDate;
+        const jobDate = new Date(createdAt);
+        const currDate = new Date();
+        // const daysAgo = currDate - jobDate;
+        const difference = currDate.getTime() - jobDate.getTime();
+        const days = Math.ceil(difference / (1000 * 3600 * 24));
 
-        if (daysAgo === 0) {
+        if (days === 0) {
             result = "Today";
-        } else if (daysAgo === 1) {
-            result = `${daysAgo} day ago`;
+        } else if (days === 1) {
+            result = `${days} day ago`;
         } else {
-            result = `${daysAgo} days ago`;
+            result = `${days} days ago`;
         }
 
         return result;
