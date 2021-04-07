@@ -1,9 +1,11 @@
 
-.myNetwork, .invitations {
+.myNetwork {
     display: flex;
     flex-direction: column;
-    min-width: 550px;
-    max-width: 850px;
+    align-items: center;
+    justify-content: center;
+    min-width: 855px;
+    max-width: 855px;
     min-height: 100%;
     margin-left: 20px;
     margin-right: 20px;
@@ -13,11 +15,10 @@
 }
 
 .myNetwork__cards {
-    width: 100%;
+    width: 95%;
     padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .myNetwork__card {
@@ -92,8 +93,8 @@
 .invitations {
     display: flex;
     flex-direction: column;
-    min-width: 550px;
-    max-width: 850px;
+    min-width: 855px;
+    max-width: 855px;
     min-height: 100%;
     margin-left: 20px;
     margin-right: 20px;
@@ -118,4 +119,5 @@
     display: flex;
     flex-wrap: wrap;
     width: 90%;
+    min-height: 100px;
 }

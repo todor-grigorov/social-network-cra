@@ -1,32 +1,210 @@
-import React, { useState, useEffect } from 'react';
-import TabPanel from './TabPanel';
-import InvitationCard from './InvitationCard';
-import '../css/MyNetwork.css';
+import React, { useState, useEffect } from "react";
+import TabPanel from "./TabPanel";
+import InvitationCard from "./InvitationCard";
+import "../css/MyNetwork.css";
 import { useDispatch, useSelector } from "react-redux";
-import background from '../resources/images/default_background.jpg';
-import { Avatar, Button, Tab, Tabs } from '@material-ui/core';
+import background from "../resources/images/default_background.jpg";
+import { Avatar, Button, Tab, Tabs } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { db } from "../firebase/firebase";
+import firebase from "firebase";
 
 const MyNetwork = () => {
     const [tab, setTab] = useState(0);
+    const [connectUsers, setConnectUsers] = useState([]);
+    const [recievedInvitationUsers, setRecievedInvitationUsers] = useState([]);
+    const [sentInvitationUsers, setSentInvitationUsers] = useState([]);
+    const [network, setNetwork] = useState([]);
 
-    const user = useSelector((state => state.user));
-    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-    const invitations = [1, 2, 3, 4, 5,];
+    const user = useSelector((state) => state.user);
+
+    const fetchSentInvitationUsers = () => {
+        return new Promise((resolve, reject) => {
+            if (!user.sentInvitations.length) resolve([]);
+            let usersRef = db
+                .collection("users")
+                .where("uid", "in", [...user.sentInvitations]);
+            usersRef
+                .get()
+                .then((snapshot) => {
+                    resolve(snapshot.docs);
+                })
+                .catch((err) => reject(err));
+        });
+    };
+
+    const fetchRecievedInvitationUsers = () => {
+        return new Promise((resolve, reject) => {
+            if (!user.recievedInvitations.length) resolve([]);
+            let usersRef = db
+                .collection("users")
+                .where("uid", "in", [...user.recievedInvitations]);
+            usersRef
+                .get()
+                .then((snapshot) => {
+                    resolve(snapshot.docs);
+                })
+                .catch((err) => reject(err));
+        });
+    };
+
+    const fetchConnectUsers = () => {
+        return new Promise((resolve, reject) => {
+            let usersRef = db
+                .collection("users")
+                .where("uid", "not-in", [
+                    ...user.network,
+                    ...user.sentInvitations,
+                    ...user.recievedInvitations,
+                    user.uid,
+                ]);
+            usersRef
+                .get()
+                .then((snapshot) => {
+                    resolve(snapshot.docs);
+                })
+                .catch((err) => reject(err));
+        });
+    };
+
+    const fetchNetwork = () => {
+        return new Promise((resolve, reject) => {
+            let usersRef = db
+                .collection("users")
+                .where("uid", "in", [...user.network]);
+            usersRef
+                .get()
+                .then((snapshot) => {
+                    resolve(snapshot.docs);
+                })
+                .catch((err) => reject(err));
+        });
+    };
 
     const handleTabChange = (e, newValue) => {
         setTab(newValue);
-    }
+    };
 
-    const fetch
+    const handleConnectClick = (e, recipientId) => {
+        const senderRef = db.collection("users").doc(user.uid);
+        const recipientRef = db.collection("users").doc(recipientId);
+
+        senderRef
+            .update({
+                sentInvitations: firebase.firestore.FieldValue.arrayUnion(recipientId),
+            })
+            .then(() => {
+                recipientRef
+                    .update({
+                        recievedInvitations: firebase.firestore.FieldValue.arrayUnion(
+                            user.uid
+                        ),
+                    })
+                    .catch((err) => alert(err.message));
+            })
+            .catch((err) => alert(err.message));
+    };
+
+    const handleAcceptInvitation = (e, invUserId) => {
+        const senderRef = db.collection("users").doc(invUserId);
+        const recipientRef = db.collection("users").doc(user.uid);
+
+        senderRef
+            .update({
+                sentInvitations: firebase.firestore.FieldValue.arrayRemove(user.uid),
+                network: firebase.firestore.FieldValue.arrayUnion(user.uid),
+            })
+            .then(() => {
+                recipientRef
+                    .update({
+                        recievedInvitations: firebase.firestore.FieldValue.arrayRemove(
+                            invUserId
+                        ),
+                        network: firebase.firestore.FieldValue.arrayUnion(invUserId),
+                    })
+                    .catch((err) => alert(err.message));
+            })
+            .catch((err) => alert(err.message));
+    };
+
+    const handleRejectInvitation = (e, invUserId) => {
+        const senderRef = db.collection("users").doc(invUserId);
+        const recipientRef = db.collection("users").doc(user.uid);
+
+        senderRef
+            .update({
+                sentInvitations: firebase.firestore.FieldValue.arrayRemove(user.uid),
+            })
+            .then(() => {
+                recipientRef
+                    .update({
+                        recievedInvitations: firebase.firestore.FieldValue.arrayRemove(
+                            invUserId
+                        ),
+                    })
+                    .catch((err) => alert(err.message));
+            })
+            .catch((err) => alert(err.message));
+    };
 
     useEffect(() => {
+        if (user.uid) {
+            fetchNetwork()
+                .then((userDocs) =>
+                    setNetwork(
+                        userDocs.map((x) => {
+                            return { id: x.id, ...x.data() };
+                        })
+                    )
+                )
+                .catch((err) => alert(err.message));
 
+            fetchConnectUsers()
+                .then((userDocs) =>
+                    setConnectUsers(
+                        userDocs.map((x) => {
+                            return { id: x.id, ...x.data() };
+                        })
+                    )
+                )
+                .catch((err) => alert(err.message));
 
-    }, []);
+            fetchRecievedInvitationUsers()
+                .then((userDocs) =>
+                    setRecievedInvitationUsers(
+                        userDocs.map((x) => {
+                            return { id: x.id, ...x.data() };
+                        })
+                    )
+                )
+                .catch((err) => alert(err.message));
+
+            fetchSentInvitationUsers()
+                .then((userDocs) =>
+                    setSentInvitationUsers(
+                        userDocs.map((x) => {
+                            return { id: x.id, ...x.data() };
+                        })
+                    )
+                )
+                .catch((err) => alert(err.message));
+        }
+    }, [user]);
 
     return (
         <>
+            <div className="invitations">
+                <h4>My Network</h4>
+                {network.map((invUser) => (
+                    <InvitationCard
+                        recieved={false}
+                        uid={invUser.uid}
+                        displayName={invUser.displayName}
+                        headline={invUser.headline}
+                        photoURL={invUser.photoURL}
+                    />
+                ))}
+            </div>
             <div className="invitations">
                 <h4>Invitations</h4>
                 <Tabs
@@ -41,32 +219,63 @@ const MyNetwork = () => {
                     <Tab label="Recieved" id="recieved" />
                     <Tab label="Sent" id="sent" />
                 </Tabs>
-                <TabPanel value={tab} index={0} className="invitation_tabPanel">{invitations.map(x => <InvitationCard />)}</TabPanel>
-                <TabPanel value={tab} index={1} className="invitation_tabPanel">{invitations.map(x => <InvitationCard />)}</TabPanel>
+                <TabPanel value={tab} index={0} className="invitation_tabPanel">
+                    {recievedInvitationUsers.map((invUser) => (
+                        <InvitationCard
+                            recieved={true}
+                            uid={invUser.uid}
+                            displayName={invUser.displayName}
+                            headline={invUser.headline}
+                            photoURL={invUser.photoURL}
+                            acceptInvitaionHandler={handleAcceptInvitation}
+                            rejectInvitationHandler={handleRejectInvitation}
+                        />
+                    ))}
+                </TabPanel>
+                <TabPanel value={tab} index={1} className="invitation_tabPanel">
+                    {sentInvitationUsers.map((invUser) => (
+                        <InvitationCard
+                            recieved={false}
+                            uid={invUser.uid}
+                            displayName={invUser.displayName}
+                            headline={invUser.headline}
+                            photoURL={invUser.photoURL}
+                        />
+                    ))}
+                </TabPanel>
             </div>
             <div className="myNetwork">
                 <div className="myNetwork__cards">
-                    {
-                        cards.map(card => (
-                            <div className="myNetwork__card">
-                                {
-                                    user.backgroundUrl ?
-                                        <img src={user.backgroundUrl} alt="bacground" />
-                                        :
-                                        <img src={background} alt="bacground" />
-                                }
-                                <Avatar className="myNetwork__avatar" alt="user photo" src={user.photoURL || ''} >{user.email ? user.email[0].toUpperCase() : 'T'}</Avatar>
-                                <h2>{user.displayName || "New user"}</h2>
-                                <h3>{user.headline || "Headline goes here"}</h3>
-                                <h4>{user.email || "Add yor email"}</h4>
-                                <Button variant="outlined" color="primary">connect</Button>
-                            </div>
-                        ))
-                    }
+                    {connectUsers.map((user) => (
+                        <div key={user.uid} id={user.uid} className="myNetwork__card">
+                            {user.backgroundUrl ? (
+                                <img src={user.backgroundUrl} alt="bacground" />
+                            ) : (
+                                <img src={background} alt="bacground" />
+                            )}
+                            <Avatar
+                                className="myNetwork__avatar"
+                                alt="user photo"
+                                src={user.photoURL || ""}
+                            >
+                                {user.email ? user.email[0].toUpperCase() : "T"}
+                            </Avatar>
+                            <h2>{user.displayName || "New user"}</h2>
+                            <h3>{user.headline || "Headline goes here"}</h3>
+                            <h4>{user.email || "Add yor email"}</h4>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                onClick={(e) => handleConnectClick(e, user.uid)}
+                            >
+                                connect
+              </Button>
+                        </div>
+                    ))}
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default MyNetwork
+export default MyNetwork;

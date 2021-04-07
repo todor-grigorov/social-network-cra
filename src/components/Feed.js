@@ -22,7 +22,7 @@ function Feed() {
             })
                 .catch(err => reject(err));
         })
-    }
+    };
 
     useEffect(() => {
         const fetchPopulatedPosts = async () => {

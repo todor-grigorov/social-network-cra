@@ -15,7 +15,30 @@
     -moz-box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
 }
 
+.invitationCardSent {
+    min-width: 250px;
+    max-width: 350px;
+    min-height: 80px;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+
+
+    box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(119,119,119,0.6);
+}
+
 .invitationCard:hover {
+    box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
+}
+
+.invitationCardSent:hover {
     box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
     -webkit-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
     -moz-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
@@ -37,10 +60,16 @@
     font-size: 13px;
     font-weight: 600;
 }
+
 .invitationCard__details {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
+}
+
+.sent {
+    justify-content: center;
+    align-items: center;
 }
 
 .invitationCard__buttons {
