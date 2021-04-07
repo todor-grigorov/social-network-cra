@@ -70,6 +70,8 @@ const Register = (props) => {
                         network: [],
                         displayName: fullName,
                         email: email,
+                        sentInvitations: [],
+                        recievedInvitations: [],
                     })
                         .then(() => {
                             history.push("/signin");

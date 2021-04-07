@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TabPanel from "./TabPanel";
 import InvitationCard from "./InvitationCard";
 import "../css/MyNetwork.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import background from "../resources/images/default_background.jpg";
 import { Avatar, Button, Tab, Tabs } from "@material-ui/core";
 import { Link } from "react-router-dom";

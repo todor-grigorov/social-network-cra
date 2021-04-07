@@ -42,6 +42,7 @@ const CreatePost = () => {
             type: type,
             photoUrl: type === "image" ? fileURL : "",
             videoUrl: type === "video" ? fileURL : "",
+            likes: [],
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
             .then((docRef) => {

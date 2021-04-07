@@ -3,12 +3,40 @@ import { useState, useEffect } from 'react';
 import '../css/Feed.css';
 import CreatePost from './CreatePost';
 import Post from './Post';
+import { useSelector } from "react-redux";
 import { db, auth } from '../firebase/firebase';
 import FlipMove from 'react-flip-move';
+import firebase from "firebase";
+
 
 function Feed() {
 
     const [posts, setPosts] = useState([]);
+
+    const user = useSelector((state) => state.user);
+
+    const handleLike = (e, postId) => {
+        if (!postId) return;
+        const postRef = db.collection('posts').doc(postId);
+        postRef.get()
+            .then(doc => {
+                const data = doc.data();
+
+                if (data.likes.includes(user.uid)) {
+                    postRef.update({
+                        likes: firebase.firestore.FieldValue.arrayRemove(user.uid)
+                    })
+                        .catch((err) => alert(err.message));
+                } else {
+                    postRef.update({
+                        likes: firebase.firestore.FieldValue.arrayUnion(user.uid)
+                    })
+                        .catch((err) => alert(err.message));
+                }
+            });
+
+
+    };
 
     const fetchUsers = (uids = []) => {
         return new Promise((resolve, reject) => {
@@ -66,10 +94,12 @@ function Feed() {
         <div className="feed">
             <CreatePost />
             <FlipMove>
-                {posts.map(({ id, data: { message, photoUrl, videoUrl, type }, userRecord: { displayName, email, photoURL } }) => {
+                {posts.map(({ id, data: { message, photoUrl, videoUrl, type, likes }, userRecord: { displayName, email, photoURL } }) => {
                     return (
                         <Post
                             key={id}
+                            id={id}
+                            uid={user.uid}
                             name={displayName}
                             email={email}
                             message={message}
@@ -77,6 +107,8 @@ function Feed() {
                             videoUrl={videoUrl}
                             userPhotoUrl={photoURL}
                             type={type}
+                            likes={likes}
+                            handleLike={handleLike}
                         />
                     )
                 }

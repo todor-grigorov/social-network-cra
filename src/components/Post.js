@@ -7,7 +7,7 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import '../css/Post.css';
 import InputOption from './InputOption';
 
-const Post = forwardRef(({ name, email, message, photoUrl, userPhotoUrl, videoUrl, type }, ref) => {
+const Post = forwardRef(({ id, uid, name, email, message, photoUrl, userPhotoUrl, videoUrl, type, handleLike, likes }, ref) => {
     return (
         <div ref={ref} className="post">
             <div className="post__header">
@@ -35,7 +35,7 @@ const Post = forwardRef(({ name, email, message, photoUrl, userPhotoUrl, videoUr
             </div>
 
             <div className="post__buttons">
-                <InputOption Icon={ThumbUpAltOutlinedIcon} title="Like" color="gray" />
+                <InputOption Icon={ThumbUpAltOutlinedIcon} id={id} title="Like" color={likes ? likes.includes(uid) ? "black" : "gray" : "gray"} handleClick={handleLike} />
                 <InputOption Icon={ChatOutlinedIcon} title="Comment" color="gray" />
                 <InputOption Icon={ShareOutlinedIcon} title="Share" color="gray" />
                 <InputOption Icon={SendOutlinedIcon} title="Send" color="gray" />
