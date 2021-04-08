@@ -6,6 +6,8 @@ import { auth, db } from '../../firebase/firebase';
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import '../../css/App.css';
 import userActions from "../../redux/actions/userActions";
+import alertActions from "../../redux/actions/alertActions";
+import alertSeverities from "../../redux/enums/alertSeverities";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +65,14 @@ const SignIn = (props) => {
             .catch(err => {
                 // TODO:
                 // Push notification not alert
-                alert(err.message);
+                dispatch({
+                    type: alertActions.add,
+                    payload: {
+                        severity: alertSeverities.error,
+                        message: err.message,
+                    }
+                })
+                // alert(err.message);
             });
     };
 

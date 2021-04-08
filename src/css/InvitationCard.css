@@ -17,7 +17,7 @@
 
 .invitationCardSent {
     min-width: 250px;
-    max-width: 350px;
+    max-width: 260px;
     min-height: 80px;
     border-radius: 10px;
     margin: 10px;
@@ -44,21 +44,47 @@
     -moz-box-shadow: 0px 0px 5px 3px rgba(119,119,119,0.6);
 }
 
+.invitationCard, .invitationCardSent > a {
+    text-decoration: none;
+}
+
+/* .invitationCard, .invitationCardSent > a:hover {
+    text-decoration: underline;
+} */
+
+.invitationCard__details > a {
+    text-decoration: none;
+}
+
+.sent > a {
+    text-decoration: none;
+}
+
+/* .invitationCard__details, .sent > a:hover {
+    text-decoration: underline;
+} */
+
 .invitationCard__avatar {
     width: 60px !important;
     height: 60px !important;
     cursor: pointer;
 }
 
-.invitationCard__details > h5:hover {
+.invitationCard__details__name {
+    font-size: 0.83em !important;
+    color:black;
+}
+
+.invitationCard__details__name:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.invitationCard__details > h6 {
+.invitationCard__details__headline {
     color: gray;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .invitationCard__details {

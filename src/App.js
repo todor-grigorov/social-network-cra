@@ -24,6 +24,7 @@ import userActions from './redux/actions/userActions';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import Widgets from './components/Widgets';
 import Job from './components/Job';
+import AlertBar from './components/AlertBar';
 
 // rafce
 // rfce
@@ -69,6 +70,7 @@ function App() {
 
   return (
     <div className={user.email ? "app-authenticated" : "app"}>
+      <AlertBar />
       {loading ?
         <Backdrop style={{ zIndex: 9999, background: "#fff" }} open={loading} >
           <CircularProgress color="inherit" />

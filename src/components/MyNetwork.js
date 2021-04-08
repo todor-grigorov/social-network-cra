@@ -253,13 +253,15 @@ const MyNetwork = () => {
                             ) : (
                                 <img src={background} alt="bacground" />
                             )}
-                            <Avatar
-                                className="myNetwork__avatar"
-                                alt="user photo"
-                                src={userr.photoURL || ""}
-                            >
-                                {userr.email ? userr.email[0].toUpperCase() : "T"}
-                            </Avatar>
+                            <Link to={`/profile/${userr.uid}`}>
+                                <Avatar
+                                    className="myNetwork__avatar"
+                                    alt="user photo"
+                                    src={userr.photoURL || ""}
+                                >
+                                    {userr.email ? userr.email[0].toUpperCase() : "T"}
+                                </Avatar>
+                            </Link>
                             <Link to={`/profile/${userr.uid}`}>
                                 <h2 className="myNetwork_name">{userr.displayName || "New user"}</h2>
                             </Link>
