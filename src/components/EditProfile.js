@@ -9,6 +9,8 @@ import { Avatar, Button, CircularProgress, Fab, TextField } from '@material-ui/c
 import EditIcon from '@material-ui/icons/Edit';
 import background from '../resources/images/default_background.jpg';
 import userActions from '../redux/actions/userActions';
+import alertActions from '../redux/actions/alertActions';
+import alertSeverities from '../redux/enums/alertSeverities';
 
 const EditProfile = () => {
     const user = useSelector((state => state.user));
@@ -152,12 +154,25 @@ const EditProfile = () => {
                             }
                         });
                         setLoading(false);
+
+                        dispatch({
+                            type: alertActions.add,
+                            payload: {
+                                severity: alertSeverities.success,
+                                message: 'Edit successfull',
+                            }
+                        })
                     })
                     .catch((err) => {
-                        // TODO:
-                        // Push notification not alert
+
                         setLoading(false);
-                        alert(err.message);
+                        dispatch({
+                            type: alertActions.add,
+                            payload: {
+                                severity: alertSeverities.error,
+                                message: 'Edit unsuccessfull',
+                            }
+                        })
                     });
             })
             .catch((err) => {

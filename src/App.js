@@ -61,7 +61,7 @@ function App() {
         });
 
       } else {
-        history.push("/");
+        history.push(history.length ? history.location.pathname : "/");
         dispatch({ type: userActions.logOut });
       }
       if (loading) setLoading(false);

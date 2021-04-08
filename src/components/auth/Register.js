@@ -2,8 +2,11 @@ import * as React from "react";
 import { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
+import { useDispatch } from "react-redux";
 import { auth, db } from '../../firebase/firebase';
 import '../../css/App.css';
+import alertActions from "../../redux/actions/alertActions";
+import alertSeverities from "../../redux/enums/alertSeverities";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +32,7 @@ const Register = (props) => {
     const [rePasswordError, setRePasswordError] = useState({ error: false, message: "" });
 
 
+    const dispatch = useDispatch();
     const classes = useStyles();
     let history = useHistory();
 
@@ -80,6 +84,14 @@ const Register = (props) => {
                             setEmail("");
                             setPassword("");
                             setRePassword("");
+
+                            dispatch({
+                                type: alertActions.add,
+                                payload: {
+                                    severity: alertSeverities.success,
+                                    message: 'User registered successfully',
+                                }
+                            })
                         })
                         .catch(err => {
                             // TODO:
@@ -89,9 +101,13 @@ const Register = (props) => {
                 });
             })
             .catch(err => {
-                // TODO:
-                // Push notification not alert
-                alert(err.message);
+                dispatch({
+                    type: alertActions.add,
+                    payload: {
+                        severity: alertSeverities.error,
+                        message: err.message,
+                    }
+                })
             });
     };
 

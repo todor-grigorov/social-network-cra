@@ -27,7 +27,7 @@ const AlertBar = () => {
     return (
         <div className="alerts">
             <Snackbar
-                open={open}
+                open={alertMesages.severity ? open : false}
                 autoHideDuration={6000}
                 onClose={handleClose}
                 anchorOrigin={{
