@@ -31,29 +31,83 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
   margin-right: 20px;
 }
 
+.home__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93%; 
+  background-color: #f1f1f1;
+  background-image: url(../resources/images/laptop-orange_1920.jpg);
+}
+
+.home__text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__introduction {
+  background-color: #fff;
+  border-radius: 10px;
+  min-width: 400px;
+  max-width: 650px;
+  min-height: 180px;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  text-align: center;
+
+  box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
+  -webkit-box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
+  -moz-box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
+}
+
+.home__introduction > h2 {
+  color: #2977c9;
+}
+
+.home__buttons {
+  align-self: flex-end;
+  min-width: 650px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 8%;
+}
+
+.home__buttons > a {
+  text-decoration: none;
+}
+
 .section {
-  width: 100%;
-  max-width: 1200px;
+  /* width: 100%; */
+  height: 100%;
+  /* max-width: 1200px; */
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .public-headline {
   font-size: 3.4rem;
   font-family: sans-serif;
-  color: #2977c9;
+  /* color: #2977c9; */
+  color: #126fbc;
+  /* color: #3F51B5; */
+  text-shadow: 2px 2px #051f35;
   font-weight: 200;
   line-height: 70px;
   /* width: 55%; */
-  padding-bottom: 48px;
+  padding: 50px 20px;
 }
 
 .public-main-img {
-  z-index: -1;
-  width: 80%;
-  height: 60%;
+  /* z-index: -1; */
+  width: 900px;
+  height: 100%;
 }
 
 /*================================== Sign In ==========================================*/
