@@ -95,9 +95,11 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
   font-size: 3.4rem;
   font-family: sans-serif;
   /* color: #2977c9; */
-  color: #126fbc;
+  /* color: #126fbc; */
   /* color: #3F51B5; */
-  text-shadow: 2px 2px #051f35;
+  color: #007FFF;
+  /* text-shadow: 2px 2px #051f35; */
+  text-shadow: 2px 2px #104e8b;
   font-weight: 200;
   line-height: 70px;
   /* width: 55%; */
