@@ -25,6 +25,7 @@ import { Backdrop, CircularProgress } from '@material-ui/core';
 import Widgets from './components/Widgets';
 import Job from './components/Job';
 import AlertBar from './components/AlertBar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // rafce
 // rfce
@@ -80,34 +81,31 @@ function App() {
           {/* Render public or private Nav according to user credentials */}
           < Navigation />
           <Switch>
-            <Route path="/signin">
-              <SignIn />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/feed">
+            <ProtectedRoute path="/feed">
               {/* App Body for registered users */}
               <div className="app__body">
                 <Sidebar />
                 <Feed />
                 <Widgets />
               </div>
-            </Route>
-            <Route path="/profile">
+            </ProtectedRoute>
+            <ProtectedRoute path="/profile">
               <Switch>
-                <Route path="/profile/edit/:userId">
+                <ProtectedRoute path="/profile/edit/:userId">
                   <EditProfile />
-                </Route>
-                <Route path="/profile/:userId">
+                </ProtectedRoute>
+                <ProtectedRoute path="/profile/:userId">
                   <Profile />
-                </Route>
-                <Route path="/profile">
+                </ProtectedRoute>
+                <ProtectedRoute path="/profile">
                   <Profile />
-                </Route>
+                </ProtectedRoute>
               </Switch>
-            </Route>
-            <Route path="/jobs">
+            </ProtectedRoute>
+            <ProtectedRoute path="/network">
+              <MyNetwork />
+            </ProtectedRoute>
+            <ProtectedRoute path="/jobs">
               <Switch>
                 <Route path={`/jobs/:jobId`}>
                   <Job />
@@ -116,9 +114,12 @@ function App() {
                   <Jobs />
                 </Route>
               </Switch>
+            </ProtectedRoute>
+            <Route path="/signin">
+              <SignIn />
             </Route>
-            <Route path="/network">
-              <MyNetwork />
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/" >
               {

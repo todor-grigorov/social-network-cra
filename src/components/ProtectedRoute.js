@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     const user = useSelector((state => state.user));
 
     return (
-        user.email ?
+        user.email && user.displayName ?
             <Route {...rest} render={
                 props => <Component {...rest} {...props} />
             } />
