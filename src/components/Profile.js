@@ -30,7 +30,7 @@ const Profile = () => {
         return () => {
             setProfile({});
         }
-    }, []);
+    }, [userId]);
 
     return (
         <div className="profile">
@@ -43,11 +43,16 @@ const Profile = () => {
                 }
                 <div>
                     <Avatar className="profile-avatar" src={profile.photoURL || ''} alt="user-avatar" >{profile.email ? profile.email[0].toUpperCase() : 'T'}</Avatar>
-                    <Link to={`/profile/edit/${profile.uid}`}>
-                        <Fab color="primary" aria-label="edit" style={{ marginRight: "10px", marginTop: "10px" }}>
-                            <EditIcon />
-                        </Fab>
-                    </Link>
+                    {
+                        !userId || userId === user.uid ?
+                            <Link to={`/profile/edit/${profile.uid}`}>
+                                <Fab color="primary" aria-label="edit" style={{ marginRight: "10px", marginTop: "10px" }}>
+                                    <EditIcon />
+                                </Fab>
+                            </Link>
+                            :
+                            (null)
+                    }
                 </div>
             </div>
             <div className="profile__bottom">
