@@ -101,6 +101,9 @@ const MyNetwork = () => {
                             user.uid
                         ),
                     })
+                    .then(() => {
+                        setConnectUsers(connectUsers.filter(user => user.uid !== recipientId))
+                    })
                     .catch((err) => console.log(err.message));
             })
             .catch((err) => console.log(err.message + 'handleConnectClick'));
