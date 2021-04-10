@@ -70,7 +70,7 @@ const Navigation = () => {
     };
 
     return (
-        <div className="nav">
+        <div data-testid="nav" className="nav">
             {user.email && user.displayName ?
                 <>
                     {/* Private Navigation */}
@@ -98,8 +98,8 @@ const Navigation = () => {
                         <img src={logo} alt="logo" style={{ maxWidth: "2em" }} />
                     </Link>
                     <div className="">
-                        <Link className="nav-btn-only-text" to="/register">Join now</Link>
-                        <Link className="nav-btn-outlined" to="/signin">Sign in</Link>
+                        <Link data-testid="nav-register-btn" className="nav-btn-only-text" to="/register">Join now</Link>
+                        <Link data-testid="nav-signin-btn" className="nav-btn-outlined" to="/signin">Sign in</Link>
                     </div>
                 </>
             }

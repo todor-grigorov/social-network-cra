@@ -71,10 +71,10 @@ function App() {
   }, []);
 
   return (
-    <div className={user.email ? "app-authenticated" : "app"}>
+    <div data-testid="app" className={user.email ? "app-authenticated" : "app"}>
       <AlertBar />
       {loading ?
-        <Backdrop style={{ zIndex: 9999, background: "#fff" }} open={loading} >
+        <Backdrop data-testid="main-loader" style={{ zIndex: 9999, background: "#fff" }} open={loading} >
           <CircularProgress color="inherit" />
         </Backdrop>
         :

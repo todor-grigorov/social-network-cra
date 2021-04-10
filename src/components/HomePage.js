@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import '../css/App.css';
 // import mainImage from "../resources/images/web-2389250_1280.jpg";
 // import mainImage from "../resources/images/thisisengineering2.jpg";
-import mainImage from "../resources/images/code.jpg";
+// import mainImage from "../resources/images/code.jpg";
 
 
 const HomePage = (props) => {
 
 
     return (
-        <div className="home__container">
+        <div data-testid="home-page" className="home__container">
             <div className="home__text">
                 <h1 className="public-headline">Welcome to your programming community</h1>
                 <div className="home__introduction">
