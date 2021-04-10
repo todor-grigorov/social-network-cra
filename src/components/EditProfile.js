@@ -133,7 +133,6 @@ const EditProfile = () => {
                         github: github,
                     })
                     .then(() => {
-                        history.push('/profile');
                         dispatch({
                             type: userActions.login,
                             payload: {
@@ -156,6 +155,7 @@ const EditProfile = () => {
                                 message: 'Edit successfull',
                             }
                         })
+                        history.push('/profile');
                     })
                     .catch((err) => {
 
