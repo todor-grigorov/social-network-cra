@@ -26,12 +26,12 @@ function Feed() {
                     postRef.update({
                         likes: firebase.firestore.FieldValue.arrayRemove(user.uid)
                     })
-                        .catch((err) => alert(err.message));
+                        .catch((err) => console.log(err.message));
                 } else {
                     postRef.update({
                         likes: firebase.firestore.FieldValue.arrayUnion(user.uid)
                     })
-                        .catch((err) => alert(err.message));
+                        .catch((err) => console.log(err.message));
                 }
             });
 
@@ -78,9 +78,7 @@ function Feed() {
                         setPosts(dataPosts);
 
                 } catch (err) {
-                    // TODO:
-                    // Push notification not alert
-                    alert(err.message);
+                    console.log(err.message);
                 }
             });
 

@@ -24,7 +24,7 @@ const Job = () => {
                 setJob(data);
                 setLoading(false);
             })
-            .catch((err) => alert(err.message));
+            .catch((err) => console.log(err.message));
     };
 
     useEffect(() => {

@@ -61,17 +61,13 @@ const EditProfile = () => {
                                     history.push(`/profile/edit/${user.uid}`);
                                 })
                                 .catch((err) => {
-                                    // TODO:
-                                    // Push notification not alert
                                     setLoading(false);
-                                    alert(err.message);
+                                    console.log(err.message);
                                 });
                         })
                         .catch((err) => {
-                            // TODO:
-                            // Push notification not alert
                             setLoading(false);
-                            alert(err.message);
+                            console.log(err.message);
                         });
                 } else if (type === "background") {
                     db.collection("users").doc(user.uid)
@@ -90,10 +86,8 @@ const EditProfile = () => {
                             history.push(`/profile/edit/${user.uid}`);
                         })
                         .catch((err) => {
-                            // TODO:
-                            // Push notification not alert
                             setLoading(false);
-                            alert(err.message);
+                            console.log(err.message);
                         });
                 }
             });
@@ -176,10 +170,8 @@ const EditProfile = () => {
                     });
             })
             .catch((err) => {
-                // TODO:
-                // Push notification not alert
                 setLoading(false);
-                alert(err.message);
+                console.log(err.message);
             });
 
     }

@@ -63,8 +63,7 @@ const SignIn = (props) => {
 
             })
             .catch(err => {
-                // TODO:
-                // Push notification not alert
+                console.log(err.message);
                 dispatch({
                     type: alertActions.add,
                     payload: {
@@ -72,7 +71,6 @@ const SignIn = (props) => {
                         message: err.message,
                     }
                 })
-                // alert(err.message);
             });
     };
 

@@ -94,9 +94,7 @@ const Register = (props) => {
                             })
                         })
                         .catch(err => {
-                            // TODO:
-                            // Push notification not alert
-                            alert(err.message);
+                            console.log(err.message);
                         });
                 });
             })

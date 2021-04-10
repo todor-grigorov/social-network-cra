@@ -101,9 +101,9 @@ const MyNetwork = () => {
                             user.uid
                         ),
                     })
-                    .catch((err) => alert(err.message));
+                    .catch((err) => console.log(err.message));
             })
-            .catch((err) => alert(err.message + 'handleConnectClick'));
+            .catch((err) => console.log(err.message + 'handleConnectClick'));
     };
 
     const handleAcceptInvitation = (e, invUserId) => {
@@ -123,9 +123,9 @@ const MyNetwork = () => {
                         ),
                         network: firebase.firestore.FieldValue.arrayUnion(invUserId),
                     })
-                    .catch((err) => alert(err.message + 'handleAcceptInvitation'));
+                    .catch((err) => console.log(err.message + 'handleAcceptInvitation'));
             })
-            .catch((err) => alert(err.message + 'handleAcceptInvitation'));
+            .catch((err) => console.log(err.message + 'handleAcceptInvitation'));
     };
 
     const handleRejectInvitation = (e, invUserId) => {
@@ -143,9 +143,9 @@ const MyNetwork = () => {
                             invUserId
                         ),
                     })
-                    .catch((err) => alert(err.message + 'handleRejectInvitation'));
+                    .catch((err) => console.log(err.message + 'handleRejectInvitation'));
             })
-            .catch((err) => alert(err.message + 'handleRejectInvitation'));
+            .catch((err) => console.log(err.message + 'handleRejectInvitation'));
     };
 
     useEffect(() => {
@@ -158,7 +158,7 @@ const MyNetwork = () => {
                         })
                     )
                 )
-                .catch((err) => alert(err.message + 'fetchNetwork'));
+                .catch((err) => console.log(err.message + 'fetchNetwork'));
 
             fetchConnectUsers()
                 .then((userDocs) =>
@@ -168,7 +168,7 @@ const MyNetwork = () => {
                         })
                     )
                 )
-                .catch((err) => alert(err.message + 'fetchConnectUsers'));
+                .catch((err) => console.log(err.message + 'fetchConnectUsers'));
 
             fetchRecievedInvitationUsers()
                 .then((userDocs) =>
@@ -178,7 +178,7 @@ const MyNetwork = () => {
                         })
                     )
                 )
-                .catch((err) => alert(err.message + 'fetchRecievedInvitationUsers'));
+                .catch((err) => console.log(err.message + 'fetchRecievedInvitationUsers'));
 
             fetchSentInvitationUsers()
                 .then((userDocs) =>
@@ -188,7 +188,7 @@ const MyNetwork = () => {
                         })
                     )
                 )
-                .catch((err) => alert(err.message + 'fetchSentInvitationUsers'));
+                .catch((err) => console.log(err.message + 'fetchSentInvitationUsers'));
         }
     }, [user]);
 

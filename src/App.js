@@ -26,6 +26,7 @@ import Widgets from './components/Widgets';
 import Job from './components/Job';
 import AlertBar from './components/AlertBar';
 import ProtectedRoute from './components/ProtectedRoute';
+import NoMatch from './components/NoMatch';
 
 // rafce
 // rfce
@@ -128,6 +129,9 @@ function App() {
                   :
                   <HomePage />
               }
+            </Route>
+            <Route path="*">
+              <NoMatch />
             </Route>
           </Switch>
         </>

@@ -33,7 +33,7 @@ const Widgets = () => {
                 setJobs(jobs.slice(0, 5));
                 setLoadingJobs(false);
             })
-            .catch((err) => alert(err.message));
+            .catch((err) => console.log(err.message));
     };
 
     const fetchQuotes = () => {
@@ -46,7 +46,7 @@ const Widgets = () => {
                 setQuote(quete);
                 setLoadingQuote(false);
             })
-            .catch((err) => alert(err.message));
+            .catch((err) => console.log(err.message));
     }
 
 

@@ -21,7 +21,7 @@ const Jobs = () => {
                 setJobs(jobs);
                 setLoadingJobs(false);
             })
-            .catch((err) => alert(err.message));
+            .catch((err) => console.log(err.message));
     };
 
     const calculateDate = (createdAt) => {
