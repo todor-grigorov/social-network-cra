@@ -1,17 +1,31 @@
+html,
+body {
+  min-height: 100%;
+}
 
-html, body{min-height:100%;}
-body {height: 100vh;}
+body {
+  height: 100vh;
+}
 
-h1, h2, h3, h4, h5, h6, p {margin: 0}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0
+}
 
 #root {
   width: 100%;
   height: 100%;
 }
+
 .app {
   width: 100%;
   height: 100%;
-  
+
 }
 
 .app-authenticated {
@@ -35,16 +49,24 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 93%; 
+  height: 93%;
   background-color: #f1f1f1;
-  background-image: url(../resources/images/laptop-orange_1920.jpg);
+  background-image: url(../resources/images/peakpx.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home__text {
   height: 100%;
+  width: 100%;
+  margin-left: 10rem;
+  margin-top: 5rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .home__introduction {
@@ -53,31 +75,31 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
   min-width: 400px;
   max-width: 650px;
   min-height: 180px;
-  align-self: flex-end;
+  /* align-self: flex-end; */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 20px;
   text-align: center;
 
-  box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
-  -webkit-box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
-  -moz-box-shadow: 0px 0px 5px 5px rgb(5,31,53,0.7);
+  box-shadow: 0px 0px 5px 5px rgb(5, 31, 53, 0.7);
+  -webkit-box-shadow: 0px 0px 5px 5px rgb(5, 31, 53, 0.7);
+  -moz-box-shadow: 0px 0px 5px 5px rgb(5, 31, 53, 0.7);
 }
 
-.home__introduction > h2 {
+.home__introduction>h2 {
   color: #2977c9;
 }
 
 .home__buttons {
-  align-self: flex-end;
+  /* align-self: flex-end; */
   min-width: 650px;
   display: flex;
   justify-content: space-evenly;
   margin-top: 8%;
 }
 
-.home__buttons > a {
+.home__buttons>a {
   text-decoration: none;
 }
 
@@ -92,7 +114,7 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
 }
 
 .public-headline {
-  font-size: 3.4rem;
+  font-size: 3rem;
   font-family: sans-serif;
   /* color: #2977c9; */
   /* color: #126fbc; */
@@ -200,13 +222,13 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
   line-height: 1.25;
   font-weight: 600;
   font-family: sans-serif;
-  color: rgba(0,0,0,0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 #signin-form p {
   margin: 0;
   font-family: sans-serif;
-  color: rgba(0,0,0,0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 /* #signin-form div input {
@@ -219,26 +241,26 @@ h1, h2, h3, h4, h5, h6, p {margin: 0}
 } */
 
 .join-now-btn {
-  background-color: rgba(0,0,0,0);
-    border: 0;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: 600;
-    font-family: inherit;
-    height: 32px;
-    line-height: 27px;
-    overflow: hidden;
-    outline-width: 2px;
-    padding: 0 8px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    z-index: 0;
-    color: #0a66c2 !important;
-    border-radius: 28px !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: inherit;
+  height: 32px;
+  line-height: 27px;
+  overflow: hidden;
+  outline-width: 2px;
+  padding: 0 8px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  z-index: 0;
+  color: #0a66c2 !important;
+  border-radius: 28px !important;
 }
 
 .join-now-btn:hover {
