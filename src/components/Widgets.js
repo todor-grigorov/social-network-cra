@@ -42,8 +42,8 @@ const Widgets = () => {
 
         fetch(config.urls.randomProgrammingQuote)
             .then((res) => res.json())
-            .then((quete) => {
-                setQuote(quete);
+            .then((data) => {
+                setQuote(data.quote);
                 setLoadingQuote(false);
             })
             .catch((err) => console.log(err.message));
@@ -77,7 +77,7 @@ const Widgets = () => {
 
             <div className="widget">
                 <div className="widgets__header">
-                    <h2>Programming Quote</h2>
+                    <h2>Quote for everyone</h2>
                 </div>
                 <div className="widgets__body">
                     {loadingQuote ?
@@ -85,7 +85,7 @@ const Widgets = () => {
                         :
                         quote ?
                             <div className="quote">
-                                <div className="quote__body">{`"${quote.quote}"`}</div>
+                                <div className="quote__body">{`"${quote.body}"`}</div>
                                 <p className="quote__author">
                                     {quote.author}
                                 </p>
