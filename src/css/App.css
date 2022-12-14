@@ -160,6 +160,20 @@ p {
     min-width: 100%;
     justify-content: space-between;
   }
+
+
+  .app__body {
+    margin: 0;
+    width: 100%;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .widgets {
+    display: none !important;
+  }
 }
 
 /*================================== Sign In ==========================================*/
