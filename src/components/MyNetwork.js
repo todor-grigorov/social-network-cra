@@ -199,15 +199,17 @@ const MyNetwork = () => {
         <>
             <div className="invitations">
                 <h4>My Network</h4>
-                {network.map((invUser) => (
-                    <InvitationCard
-                        recieved={false}
-                        uid={invUser.uid}
-                        displayName={invUser.displayName}
-                        headline={invUser.headline}
-                        photoURL={invUser.photoURL}
-                    />
-                ))}
+                <div className="invitations-container">
+                    {network.map((invUser) => (
+                        <InvitationCard
+                            recieved={false}
+                            uid={invUser.uid}
+                            displayName={invUser.displayName}
+                            headline={invUser.headline}
+                            photoURL={invUser.photoURL}
+                        />
+                    ))}
+                </div>
             </div>
             <div className="invitations">
                 <h4>Invitations</h4>
@@ -277,7 +279,7 @@ const MyNetwork = () => {
                                 onClick={(e) => handleConnectClick(e, userr.uid)}
                             >
                                 connect
-              </Button>
+                            </Button>
                         </div>
                     ))}
                 </div>
