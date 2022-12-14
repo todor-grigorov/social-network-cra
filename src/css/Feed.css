@@ -66,10 +66,12 @@
 
     .feed__input {
         width: 90%;
+        margin-top: 1rem;
     }
 
     .feed__inputOptions {
         width: 90%;
+        margin: 5px 0 1rem 0;
     }
 
     .inputOption {
