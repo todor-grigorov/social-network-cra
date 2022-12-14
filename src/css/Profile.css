@@ -17,12 +17,12 @@
     overflow: hidden;
 }
 
-.profile__top > img {
+.profile__top>img {
     object-fit: cover;
     max-height: 300px;
 }
 
-.profile__top > div {
+.profile__top>div {
     display: flex;
     justify-content: space-between;
 }
@@ -38,7 +38,7 @@
     min-height: 70%;
     padding: 0 20px 20px;
     display: flex;
-    
+
 }
 
 .profile__bottom_details {
@@ -46,12 +46,12 @@
 
 }
 
-.profile__bottom_details > h2 {
+.profile__bottom_details>h2 {
     padding-bottom: 5px;
     font-weight: 600;
 }
 
-.profile__bottom_details > h4 {
+.profile__bottom_details>h4 {
     padding-bottom: 5px;
     font-weight: 600;
 }
@@ -73,4 +73,12 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .profile {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
 }

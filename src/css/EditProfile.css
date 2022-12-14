@@ -6,8 +6,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255,255,255, 0.4);
+    background-color: rgb(255, 255, 255, 0.4);
 }
+
 .editProfile {
     display: flex;
     flex-direction: column;
@@ -30,7 +31,7 @@
     position: relative;
 }
 
-.editProfile__background > img {
+.editProfile__background>img {
     object-fit: cover;
     max-height: 250px;
     width: 100%;
@@ -54,11 +55,19 @@
     padding: 0 20px 20px;
 }
 
-.editProfile__bottom > div {
+.editProfile__bottom>div {
     margin-bottom: 20px !important;
 }
 
-.editProfile__bottom > button {
+.editProfile__bottom>button {
     max-width: 80px;
     align-self: flex-end;
+}
+
+@media screen and (max-width: 700px) {
+    .editProfile {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
 }
