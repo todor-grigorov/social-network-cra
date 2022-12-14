@@ -135,7 +135,7 @@ p {
   height: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .home__text {
     margin: 0;
     width: 80%;

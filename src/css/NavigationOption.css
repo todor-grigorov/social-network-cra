@@ -11,7 +11,7 @@
     color: black;
 }
 
-.navOption > h3 {
+.navOption>h3 {
     margin: 0;
 }
 
@@ -24,4 +24,20 @@
     object-fit: contain;
     height: 25px !important;
     width: 25px !important;
+}
+
+@media screen and (max-width: 700px) {
+    .navOption {
+        margin: 0;
+    }
+
+    .navOption__title {
+        font-size: 9px;
+    }
+
+    .navOption__icon {
+        object-fit: contain;
+        height: 20px !important;
+        width: 20px !important;
+    }
 }
