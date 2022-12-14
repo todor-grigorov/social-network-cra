@@ -184,7 +184,7 @@ const Register = (props) => {
 
     return (
         <Grid container className="register">
-            <Grid item xs={3} className="register__container">
+            <Grid item xs={12} md={6} xl={3} className="register__container">
                 <Paper container className={classes.paper}>
                     <Grid container justify="center" className={classes.gridForm}>
                         <Grid item xs={12}>

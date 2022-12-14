@@ -102,7 +102,7 @@ const SignIn = (props) => {
 
     return (
         <Grid container className="signin-page">
-            <Grid item xs={2} className="signin-container">
+            <Grid item xs={12} md={6} xl={2} className="signin-container">
                 <Paper container className={classes.paper}>
                     <form id="signin-form" method="POST">
                         <Typography variant="h1" component="h1" >Sign in</Typography >

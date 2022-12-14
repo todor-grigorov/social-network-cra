@@ -135,6 +135,33 @@ p {
   height: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .home__text {
+    margin: 0;
+    width: 80%;
+    justify-content: space-evenly;
+  }
+
+  .public-headline {
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 20px;
+    padding: 0;
+    margin-bottom: 7rem;
+  }
+
+  .home__introduction {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .home__buttons {
+    min-width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /*================================== Sign In ==========================================*/
 .signin-page {
   width: 100%;
