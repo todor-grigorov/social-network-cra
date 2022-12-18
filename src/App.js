@@ -17,16 +17,15 @@ import {
   useHistory,
   Redirect
 } from "react-router-dom";
-import Sidebar from './components/Sidebar';
-import Feed from './components/Feed';
 import { auth, db } from './firebase/firebase';
 import userActions from './redux/actions/userActions';
 import { Backdrop, CircularProgress } from '@material-ui/core';
-import Widgets from './components/Widgets';
 import Job from './components/Job';
 import AlertBar from './components/AlertBar';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './router/ProtectedRoute';
 import NoMatch from './components/NoMatch';
+import Main from './container/Main';
+import RouterSwitch from './router/RouterSwitch';
 
 // rafce
 // rfce
@@ -56,7 +55,8 @@ function App() {
               displayName: userAuth.displayName,
               email: userAuth.email,
               uid: userAuth.uid,
-              photoURL: userAuth.photoURL
+              photoURL: userAuth.photoURL,
+              loading: false,
             }
           });
           history.push(history.length ? history.location.pathname : "/feed");
@@ -79,61 +79,8 @@ function App() {
         </Backdrop>
         :
         <>
-          {/* Render public or private Nav according to user credentials */}
           < Navigation />
-          <Switch>
-            <ProtectedRoute path="/feed">
-              {/* App Body for registered users */}
-              <div className="app__body">
-                <Sidebar />
-                <Feed />
-                <Widgets />
-              </div>
-            </ProtectedRoute>
-            <ProtectedRoute path="/profile">
-              <Switch>
-                <ProtectedRoute path="/profile/edit/:userId">
-                  <EditProfile />
-                </ProtectedRoute>
-                <ProtectedRoute path="/profile/:userId">
-                  <Profile />
-                </ProtectedRoute>
-                <ProtectedRoute path="/profile">
-                  <Profile />
-                </ProtectedRoute>
-              </Switch>
-            </ProtectedRoute>
-            <ProtectedRoute path="/network">
-              <MyNetwork />
-            </ProtectedRoute>
-            <ProtectedRoute path="/jobs">
-              <Switch>
-                <Route path={`/jobs/:jobId`}>
-                  <Job />
-                </Route>
-                <Route path={`/`}>
-                  <Jobs />
-                </Route>
-              </Switch>
-            </ProtectedRoute>
-            <Route path="/signin">
-              <SignIn />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/" >
-              {
-                user.email && user.displayName ?
-                  <Redirect to="/feed" />
-                  :
-                  <HomePage />
-              }
-            </Route>
-            <Route path="*">
-              <NoMatch />
-            </Route>
-          </Switch>
+          <RouterSwitch />
         </>
       }
     </div >

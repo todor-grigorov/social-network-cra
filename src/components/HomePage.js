@@ -7,9 +7,7 @@ import '../css/App.css';
 // import mainImage from "../resources/images/code.jpg";
 
 
-const HomePage = (props) => {
-
-
+const HomePage = () => {
     return (
         <div data-testid="home-page" className="home__container">
             <div className="home__text">
